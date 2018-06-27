@@ -1,0 +1,19 @@
+.search-bar{
+  display: flex;
+  justify-content: center;
+
+  &__input {
+    padding: 1.5rem;
+    border: none;
+    flex: 0 0 40%;
+  }
+
+  &__icon{
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &__btn {
+    border: none;
+  }
+}

@@ -1,0 +1,67 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; }
+
+body {
+  background-color: #0B0C10; }
+
+.container {
+  margin: 3rem auto;
+  max-width: 160rem;
+  background-color: #1F2833; }
+
+.header__logo {
+  font-family: 'Fugaz One', cursive;
+  font-size: 6rem;
+  color: #66FCF1;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  padding: 2rem; }
+
+.search-bar {
+  display: flex;
+  justify-content: center; }
+  .search-bar__input {
+    padding: 1.5rem;
+    border: none;
+    flex: 0 0 40%; }
+  .search-bar__icon {
+    height: 2rem;
+    width: 2rem; }
+  .search-bar__btn {
+    border: none; }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-between; }
+
+.header-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.nav {
+  flex: 0 0 60%; }
+  .nav__list {
+    list-style: none;
+    font-size: 1.4rem;
+    margin-right: 4rem;
+    display: flex; }
+  .nav__item {
+    display: flex;
+    flex: 1;
+    justify-content: center; }
+  .nav__link:link, .nav__link:visited {
+    color: #66FCF1;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 3.5rem; }

@@ -1,0 +1,24 @@
+.nav {
+  flex: 0 0 60%;
+  
+  &__list {
+  list-style: none;
+  font-size: 1.4rem;
+  margin-right: 4rem;
+  display: flex;
+  }
+
+  &__item {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  &__link:link,
+  &__link:visited  {
+    color: $color-primary-light-1;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 3.5rem;
+    }
+}
