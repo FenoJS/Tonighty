@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+  background-color: $color-primary-dark-3;
+  min-height: 70rem;
+  flex-direction: column;
+
+  &__heading {
+    flex: 1;
+    padding: 2rem;
+    background-color: $color-primary-dark-1;
+  }
+}
