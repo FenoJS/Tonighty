@@ -14,8 +14,7 @@ body {
 
 .container {
   margin: 3rem auto;
-  max-width: 160rem;
-  background-color: #1F2833; }
+  max-width: 130rem; }
 
 .header__logo {
   font-family: 'Fugaz One', cursive;
@@ -24,6 +23,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 1rem;
   padding: 2rem; }
+
+.heading-secondary {
+  color: #45A29E;
+  font-size: 3rem;
+  text-transform: uppercase; }
 
 .search-bar {
   display: flex;
@@ -38,11 +42,32 @@ body {
   .search-bar__btn {
     border: none; }
 
+.popular {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.popular-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 19%;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0 0 1rem;
+  background-color: #fff; }
+  .popular-item__img {
+    width: 100%; }
+  .popular-item__name {
+    font-size: 2rem; }
+  .popular-item__network {
+    font-size: 2rem; }
+
 .header {
   display: flex;
   flex-direction: column;
   height: 20rem;
-  justify-content: space-between; }
+  justify-content: space-between;
+  background-color: #1F2833; }
 
 .header-box {
   display: flex;
@@ -65,3 +90,13 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     padding: 1.5rem 3.5rem; }
+
+.content {
+  display: flex;
+  background-color: #222629;
+  min-height: 70rem;
+  flex-direction: column; }
+  .content__heading {
+    flex: 1;
+    padding: 2rem;
+    background-color: #0B0C10; }
