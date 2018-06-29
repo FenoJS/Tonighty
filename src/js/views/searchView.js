@@ -10,13 +10,13 @@ export const clearResults = () => {
   elements.results.innerHTML = '';
 }
 
-export const renderShow = (result) => {
+export const renderShow = (show) => {
   // need to add placeholders for non-existing props
   const markup = `
     <div class="results-item">
-      <img src="${result.show.image ? result.show.image.medium : ''}" alt="result.show.name" class="results-item__img">
-      <h3 class="results-item__name">${result.show.name}</h3>
-      <p class="results-item__network">${result.show.network ? result.show.network.name : ''}</p>
+      <img src="${show.image ? show.image.medium : ''}" alt="${show.name}" class="results-item__img">
+      <h3 class="results-item__name">${show.name}</h3>
+      <p class="results-item__network">${show.network ? show.network.name : ''}</p>
     </div>
   `;
 

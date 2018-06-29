@@ -18,8 +18,9 @@ const controlSearch = async() => {
     // Prepare UI for results
     searchView.clearInput();
     searchView.clearResults();
-    // Search for results
+
     try {
+      // Search for results
       await state.search.getResult();
       // Render results
       console.log(state.search.result)

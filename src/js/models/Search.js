@@ -8,7 +8,11 @@ export default class Search {
   async getResult() {
     try {
       const res = await axios(`http://api.tvmaze.com/search/shows?q=${this.query}`);
-      this.result = res.data;
+      // remodel respond from api
+      this.result = res.data.map((item) => {
+        const newArr = item.show;
+        return newArr;
+      });
     } catch (err) {
       console.log(err);
     }
