@@ -1,8 +1,10 @@
 body {
-  background-color: $color-primary-dark-1;
+  background-color: $color-primary-light-2;
+  font-family: 'Lato', sans-serif;
 }
 
 .container {
   margin: 3rem auto;
   max-width: 130rem;
+  box-shadow: 0 2rem 5rem #000;
 }
