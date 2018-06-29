@@ -10,11 +10,13 @@ html {
   font-size: 62.5%; }
 
 body {
-  background-color: #0B0C10; }
+  background-color: #45A29E;
+  font-family: 'Lato', sans-serif; }
 
 .container {
   margin: 3rem auto;
-  max-width: 130rem; }
+  max-width: 130rem;
+  box-shadow: 0 2rem 5rem #000; }
 
 .header__logo {
   font-family: 'Fugaz One', cursive;
@@ -42,24 +44,23 @@ body {
   .search-bar__btn {
     border: none; }
 
-.popular {
+.results {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
+  flex-wrap: wrap; }
 
-.popular-item {
+.results-item {
   display: flex;
   flex-direction: column;
-  flex: 1 0 19%;
+  flex: 0 0 19%;
   align-items: center;
   padding: 1rem;
   margin: 1rem 0 0 1rem;
   background-color: #fff; }
-  .popular-item__img {
+  .results-item__img {
     width: 100%; }
-  .popular-item__name {
+  .results-item__name {
     font-size: 2rem; }
-  .popular-item__network {
+  .results-item__network {
     font-size: 2rem; }
 
 .header {
@@ -93,10 +94,9 @@ body {
 
 .content {
   display: flex;
-  background-color: #222629;
+  background-color: #0B0C10;
   min-height: 70rem;
   flex-direction: column; }
   .content__heading {
-    flex: 1;
     padding: 2rem;
-    background-color: #0B0C10; }
+    background-color: #222629; }
