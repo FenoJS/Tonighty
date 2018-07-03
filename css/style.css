@@ -45,9 +45,6 @@ body {
   .search-bar__btn {
     border: none; }
 
-.show {
-  display: none; }
-
 .results-item {
   display: flex;
   flex-direction: column;
