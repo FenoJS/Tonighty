@@ -3,8 +3,9 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-.container {
-  margin: 3rem auto;
-  max-width: 130rem;
-  box-shadow: 0 2rem 5rem #000;
+.wrapper {
+  margin:  0 auto;
+  width: 120rem;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -10,8 +10,8 @@
   <title>Tonighty</title>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
+  <header class="header">
+    <div class="wrapper">
       <div class="header-box">
         <h1 class="header__logo">tonighty</h1>
         <nav class="nav">
@@ -30,8 +30,10 @@
           </svg>
         </button>
       </form>
-    </header>
-    <main class="content">
+    </div>
+  </header>
+  <main class="content">
+    <div class="wrapper">
       <div class="upcoming-bar">UPCOMING TV SERIES</div>
       <h2 class="content__heading heading-secondary">HEADER PLACEHOLDER</h2>
       <div class="results">
@@ -39,13 +41,25 @@
           <img src="#" alt="" class="results-item__img">
           <h3 class="results-item__name">Flash</h3>
           <p class="results-item__network">The CW</p>
-        </div> -->
+          <div class="results-item__back">
+            <a href="" class="btn btn--info">More info</a>
+            <button class="btn btn--fav">Add to favorites</button>
+          </div>
+        </div>
+      </div> -->
+        <div class="show">
+          <div class="show__details">
+            <img src="#" alt="#" class="show__img">
+            <p class="show__description"></p>
+          </div>
+          <div class="show__episodes"></div>
+        </div>
 
-      </div>
+
       <div class="results__pagination">
 
-      </div>
-    </main>
+    </div>
+  </main>
 </body>
 </html>
 

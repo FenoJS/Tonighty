@@ -12,18 +12,18 @@ const state = {};
 const controlSearch = async() => {
   // Get query from view
   const query = searchView.getInput();
-  // Create new search Object
+  // Create new Search Object
   if (query) {
     state.search = new Search(query);
     // Prepare UI for results
     searchView.clearInput();
     searchView.clearResults();
-
     try {
       // Search for results
       await state.search.getResult();
       // Render results
       console.log(state.search.result)
+      elements.contentHeading.textContent = `Searching for "${state.search.query}"`
       searchView.renderResult(state.search.result);
     } catch (err) {
       console.log(err);
@@ -32,6 +32,7 @@ const controlSearch = async() => {
 };
 
 elements.searchForm.addEventListener('submit', (e) => {
+  console.log(state)
   e.preventDefault();
   controlSearch();
 });

@@ -1,11 +1,20 @@
 .content {
   display: flex;
-  background-color: $color-primary-dark-1;
-  min-height: 70rem;
-  flex-direction: column;
+  background-color: #c1c0c0;
+  min-height: 90vh;
+  align-items: flex-start;
 
   &__heading {
     padding: 2rem;
     background-color: $color-primary-dark-3;
+    flex: 0 0 100%;
   }
+}
+
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  // justify-content: space-between;
 }
