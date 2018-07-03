@@ -1,6 +1,6 @@
 import { elements } from './base';
 
-export const renderShow = (show) => {
+export const renderShow = (show, header) => {
   const markup = `
   <div class="show">
     <div class="show__details-box">
@@ -10,7 +10,7 @@ export const renderShow = (show) => {
         <div class="show__info">
           <span class="show__rating">${show.rating}</span>
           <span class="show__runtime">${show.runtime}</span>
-          <span class="show__genres">${show.genre}</span>
+          <span class="show__genres">${show.genres}</span>
         </div>
       </div>
     </div>
@@ -19,5 +19,6 @@ export const renderShow = (show) => {
   </div>
   `;
 
+  elements.contentHeading.textContent = `${header}`
   elements.results.insertAdjacentHTML('afterbegin', markup);
 };

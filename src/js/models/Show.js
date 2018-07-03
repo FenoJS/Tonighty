@@ -8,14 +8,13 @@ export default class Show {
   async getShow() {
     try {
       console.log(this.id)
-      const res = await axios(`https://www.episodate.com/api/show-details?q=${this.id}`);
-      console.log(res)
-      this.img = res.data.tvShow.image_path;
-      this.name = res.data.tvShow.name;
-      this.description = res.data.tvShow.description;
-      this.rating = res.data.tvShow.rating;
-      this.runtime = res.data.tvShow.runtime;
-      this.genres = res.data.tvShow.genres;
+      const res = await axios(`http://api.tvmaze.com/shows/${this.id}?embed[]=episodes&embed[]=cast`);
+      this.img = res.data.image.original;
+      this.name = res.data.name;
+      this.description = res.data.summary;
+      this.rating = res.data.rating.average;
+      this.runtime = res.data.runtime;
+      this.genres = res.data.genres.toString().replace(/,/g, ', ');
     } catch (err) {
       console.log(err);
     }
