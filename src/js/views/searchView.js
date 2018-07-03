@@ -29,6 +29,7 @@ export const renderShow = (show) => {
   elements.results.insertAdjacentHTML('beforeend', markup);
 };
 
-export const renderResult = (shows) => {
+export const renderResult = (shows, header) => {
+  elements.contentHeading.textContent = `Searching for "${header}"`
   shows.forEach(renderShow);
 };
