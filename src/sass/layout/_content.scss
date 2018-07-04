@@ -5,8 +5,7 @@
   align-items: flex-start;
 
   &__heading {
-    padding: 2rem;
-    background-color: $color-primary-dark-3;
+    padding: 2rem;;
     flex: 0 0 100%;
   }
 }
@@ -16,4 +15,5 @@
   display: flex;
   flex-wrap: wrap;
   flex: 1;
+  justify-content: flex-start;
 }
