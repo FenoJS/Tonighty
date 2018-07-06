@@ -1,6 +1,7 @@
 import Search from './models/Search';
 import Show from './models/Show';
 import Popular from './models/Popular';
+import Favorites from './models/Favorites';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
 
@@ -46,7 +47,7 @@ elements.searchForm.addEventListener('submit', (e) => {
 const controlShow = async() => {
   console.log(state)
   // Get show ID from url hash
-  const id = window.location.hash.replace('#', '');
+  const id = window.location.hash.replace('#/show/', '');
 
   if (id) {
     // Create new show object
@@ -82,7 +83,8 @@ const controlPopular = async() => {
     // Prepare UI for results
     searchView.clearResults();
 
-    // Render popular shoes
+    // Render popular shows
+    console.log(state)
     searchView.renderResult(state.populars.populars, 'Most popular shows');
   } catch (err) {
     console.log(err);
@@ -94,8 +96,9 @@ elements.popularLink.addEventListener('click', (e) => {
   controlPopular();
 });
 
-// const arr = Array.from(document.getElementsByTagName('a'));
-// arr.forEach(e => e.addEventListener('click', (e => {
-//   e.preventDefault()
-//   window.history.pushState(null, '', 'populars')
-// })));
+
+// POPULAR CONTROLLER
+
+const controlFavorites = () => {
+
+}
