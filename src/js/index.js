@@ -27,7 +27,7 @@ const controlSearch = async() => {
     try {
       // Search for results
       await state.search.getResult();
-
+      console.log(state)
       // Render results and header
       searchView.renderResult(state.search.result, `Searching for ${state.search.query}`);
     } catch (err) {
@@ -84,7 +84,6 @@ const controlPopular = async() => {
     searchView.clearResults();
 
     // Render popular shows
-    console.log(state)
     searchView.renderResult(state.populars.populars, 'Most popular shows');
   } catch (err) {
     console.log(err);
@@ -97,8 +96,37 @@ elements.popularLink.addEventListener('click', (e) => {
 });
 
 
-// POPULAR CONTROLLER
+// FAVORITES CONTROLLER
 
-const controlFavorites = () => {
+const controlFavorites = (id) => {
+  const parsedId = parseInt(id, 10);
+
+  // Create new favorites object
+  if (!state.favorites) state.favorites = new Favorites();
+
+
+  if (!state.favorites.isLiked(parsedId)) {
+    console.log(state, 'sd')
+    if ((state.search && !state.populars)) {
+      const showIndex = state.search.result.findIndex(e => e.id === parsedId);
+      state.favorites.addFavorite(state.search.result[showIndex]);
+    }
+    if ((state.populars && !state.search)) {
+      const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
+      state.favorites.addFavorite(state.populars.populars[showIndex]);
+    }
+
+
+  }
 
 }
+
+elements.results.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn--fav-small', 'btn--fav-small *');
+
+  if (btn) {
+    e.preventDefault();
+    const id = btn.parentNode.parentNode.getAttribute('href').replace('#/show/', ''); // Need to add better selector
+    controlFavorites(id);
+  }
+});
