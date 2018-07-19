@@ -21,6 +21,9 @@ const controlSearch = async() => {
     // Create new Search Object
     state.search = new Search(query);
 
+    // Change URL
+    window.location.hash = '#';
+
     // Prepare UI for results
     searchView.clearInput();
     searchView.clearResults();
@@ -68,7 +71,7 @@ const controlShow = async() => {
   }
 };
 
-['hashchange', 'load'].forEach(e => window.addEventListener(e, controlShow));
+//['hashchange', 'load'].forEach(e => window.addEventListener(e, controlShow));
 
 // POPULAR CONTROLLER
 
@@ -90,34 +93,47 @@ const controlPopular = async() => {
   }
 };
 
-elements.popularLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  controlPopular();
-});
+// elements.popularLink.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   controlPopular();
+// });
 
 
 // FAVORITES CONTROLLER
 
 const controlFavorites = (id) => {
-  const parsedId = parseInt(id, 10);
+  console.log(window.location.hash)
 
-  // Create new favorites object
-  if (!state.favorites) state.favorites = new Favorites();
+  if (id) {
+    const parsedId = parseInt(id, 10);
+
+    // Create new favorites object
+    if (!state.favorites) state.favorites = new Favorites();
 
 
-  if (!state.favorites.isLiked(parsedId)) {
-    console.log(state, 'sd')
-    if ((state.search && !state.populars)) {
-      const showIndex = state.search.result.findIndex(e => e.id === parsedId);
-      state.favorites.addFavorite(state.search.result[showIndex]);
+    if (!state.favorites.isLiked(parsedId)) {
+      console.log(state, 'sd')
+      if ((state.search && window.location.hash === '')) {
+        const showIndex = state.search.result.findIndex(e => e.id === parsedId);
+        state.favorites.addFavorite(state.search.result[showIndex]);
+      }
+      if ((state.populars && window.location.hash === '#populars')) {
+        const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
+        state.favorites.addFavorite(state.populars.populars[showIndex]);
+      }
+    } else {
+      state.favorites.deleteFavorite(parsedId);
     }
-    if ((state.populars && !state.search)) {
-      const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
-      state.favorites.addFavorite(state.populars.populars[showIndex]);
-    }
-
-
   }
+
+  if (window.location.hash === '#favorites') {
+    searchView.clearResults();
+    searchView.renderResult(state.favorites.favorites);
+  }
+  
+
+
+
 
 }
 
@@ -128,5 +144,25 @@ elements.results.addEventListener('click', (e) => {
     e.preventDefault();
     const id = btn.parentNode.parentNode.getAttribute('href').replace('#/show/', ''); // Need to add better selector
     controlFavorites(id);
+  }
+});
+
+
+//
+//window.addEventListener('load', controlShow);
+
+window.addEventListener('hashchange', () => {
+  const hash = window.location.hash;
+  switch (hash) {
+    case ('#populars'):
+      controlPopular();
+      console.log('populars hash');
+      break;
+    case ('#favorites'):
+      controlFavorites();
+      console.log('fav');
+      break;
+    default:
+      controlShow();
   }
 });

@@ -13,7 +13,8 @@ export default class Favorites {
     this.favorites.push(show);
   }
 
-  deleteFavorite() {
-    
+  deleteFavorite(id) {
+    const index = this.favorites.findIndex(el => el.id === id);
+    this.favorites.splice(index, 1);
   }
 }
