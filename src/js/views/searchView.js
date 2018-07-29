@@ -10,7 +10,21 @@ export const clearResults = () => {
   elements.results.innerHTML = '';
 };
 
+export const toggleFavBtn = (e) => {
+  e.target.classList.toggle("btn--fav-small2")
+
+}
+
+function rednerLikedBtn(id, storage) {
+  return storage.findIndex(e => e.id === id) !== -1;
+}
+
 export const renderShow = (show) => {
+  const storage = JSON.parse(localStorage.getItem('favorites'));
+  const { id } = show;
+
+  console.log(rednerLikedBtn(id, storage))
+
   // need to add placeholders for non-existing props
   const markup = `
     <div class="results-item">
@@ -24,7 +38,7 @@ export const renderShow = (show) => {
               <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
             </svg>
           </button>
-          <button class="btn btn--fav-small">Add to favorites</button>
+          <button class="btn ${rednerLikedBtn(id, storage) ? 'btn--fav-small btn--fav-small2' : 'btn--fav-small'}">Add to favorites</button>
         </div>
       </a>
     </div>

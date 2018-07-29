@@ -27,6 +27,7 @@ const controlSearch = async() => {
     // Prepare UI for results
     searchView.clearInput();
     searchView.clearResults();
+    //searchView.toggleFavBtn(state.favorites.favorites)
     try {
       // Search for results
       await state.search.getResult();
@@ -110,9 +111,8 @@ const controlFavorites = (id) => {
     // Create new favorites object
     if (!state.favorites) state.favorites = new Favorites();
 
-
+    // Check if show is already liked and depend of result add it or remove from Favorites
     if (!state.favorites.isLiked(parsedId)) {
-      console.log(state, 'sd')
       if ((state.search && window.location.hash === '')) {
         const showIndex = state.search.result.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.search.result[showIndex]);
@@ -128,9 +128,9 @@ const controlFavorites = (id) => {
 
   if (window.location.hash === '#favorites') {
     searchView.clearResults();
-    searchView.renderResult(state.favorites.favorites);
+    searchView.renderResult(state.favorites.favorites, 'Your favorites shows:');
   }
-  
+
 
 
 
@@ -138,21 +138,28 @@ const controlFavorites = (id) => {
 }
 
 elements.results.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn--fav-small', 'btn--fav-small *');
+  const btn = e.target.closest('.btn');
 
   if (btn) {
     e.preventDefault();
     const id = btn.parentNode.parentNode.getAttribute('href').replace('#/show/', ''); // Need to add better selector
+    searchView.toggleFavBtn(e);
     controlFavorites(id);
   }
+});
+
+window.addEventListener('load', () => {
+  state.favorites = new Favorites();
+  state.favorites.readStorage();
 });
 
 
 //
 //window.addEventListener('load', controlShow);
 
-window.addEventListener('hashchange', () => {
+['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
   const hash = window.location.hash;
+  console.log(e)
   switch (hash) {
     case ('#populars'):
       controlPopular();
@@ -165,4 +172,4 @@ window.addEventListener('hashchange', () => {
     default:
       controlShow();
   }
-});
+}));

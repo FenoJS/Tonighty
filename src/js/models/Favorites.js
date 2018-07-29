@@ -11,10 +11,27 @@ export default class Favorites {
   addFavorite(show) {
     console.log(show, 'show');
     this.favorites.push(show);
+
+    // Persist data in localStorage
+    this.persistData();
   }
 
   deleteFavorite(id) {
     const index = this.favorites.findIndex(el => el.id === id);
     this.favorites.splice(index, 1);
+
+    // Persist data in localStorage
+    this.persistData();
+  }
+
+  persistData() {
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  }
+
+  readStorage() {
+    const storage = JSON.parse(localStorage.getItem('favorites'));
+
+    // Restore likes from the localStorage
+    if (storage) this.favorites = storage;
   }
 }

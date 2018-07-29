@@ -8,7 +8,7 @@ export default class Show {
   async getShow() {
     try {
       const res = await axios(`http://api.tvmaze.com/shows/${this.id}?embed[]=episodes&embed[]=cast`);
-      
+
       if (res.data._links.nextepisode) {
         const airdateInfo = await axios(res.data._links.nextepisode.href);
         this.airdate = airdateInfo.data.airdate;
@@ -20,7 +20,7 @@ export default class Show {
       this.rating = res.data.rating.average;
       this.runtime = res.data.runtime;
       this.genres = res.data.genres.toString().replace(/,/g, ', ');
-      
+
     } catch (err) {
       console.log(err);
     }
