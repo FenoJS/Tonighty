@@ -72,6 +72,8 @@ const controlShow = async() => {
   }
 };
 
+
+
 //['hashchange', 'load'].forEach(e => window.addEventListener(e, controlShow));
 
 // POPULAR CONTROLLER
@@ -121,6 +123,10 @@ const controlFavorites = (id) => {
         const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.populars.populars[showIndex]);
       }
+      if ((state.populars && window.location.hash === `#/show/${id}`)) {
+        const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
+        state.favorites.addFavorite(state.populars.populars[showIndex]);
+      }
     } else {
       state.favorites.deleteFavorite(parsedId);
     }
@@ -138,12 +144,23 @@ const controlFavorites = (id) => {
 }
 
 elements.results.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn');
+  const btn = e.target.closest('.btn--fav-small', 'btn--fav-small *');
 
   if (btn) {
     e.preventDefault();
     const id = btn.parentNode.parentNode.getAttribute('href').replace('#/show/', ''); // Need to add better selector
     searchView.toggleFavBtn(e);
+    controlFavorites(id);
+  }
+});
+
+elements.results.addEventListener('click', (e) => {
+  const btn = document.querySelector('.btn--fav-big');
+
+  if (btn) {
+    e.preventDefault();
+    const id = window.location.hash.replace('#/show/', '');
+    btn.classList.toggle("btn--fav-big2")
     controlFavorites(id);
   }
 });

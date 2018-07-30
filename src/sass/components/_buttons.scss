@@ -19,6 +19,24 @@
 
   }
 
+  &--fav-big {
+    background-image: linear-gradient(to right, orange, red);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 20rem;
+
+  }
+
+  &--fav-big2 {
+    background-image: linear-gradient(to right, rgb(238, 238, 238), rgb(26, 17, 17));
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 20rem;
+
+  }
+
   &--info {
     background-color: transparent;
     margin-bottom: 1rem;

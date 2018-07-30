@@ -1,6 +1,14 @@
 import { elements } from './base';
 
+function rednerLikedBtn(id, storage) {
+  console.log(id, 'asdasdasdasda')
+  return storage.findIndex(e => e.id === id) !== -1;
+}
+
 export const renderShow = (show, header) => {
+  const storage = JSON.parse(localStorage.getItem('favorites'));
+  const { id } = show;
+
   const markup = `
   <div class="show">
     <div class="show__details-box">
@@ -10,7 +18,7 @@ export const renderShow = (show, header) => {
       <div class="show__details">
         <div class="show__details-top">
           <span class="show__rating">Rating: ${show.rating}/10</span>
-          <button class="btn btn--fav">Add to favorites</button>
+          <button class="btn ${rednerLikedBtn(parseInt(id, 10), storage) ? 'btn--fav-big btn--fav-big2' : 'btn--fav-big'}">Add to favorites</button>
         </div>
         <div class="show__details-mid">
           <h3 class="show__desc-heading heading-tertiary">Description: </h3>

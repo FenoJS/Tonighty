@@ -20,6 +20,8 @@ export default class Show {
       this.rating = res.data.rating.average;
       this.runtime = res.data.runtime;
       this.genres = res.data.genres.toString().replace(/,/g, ', ');
+      this.episodes = res.data._embedded.episodes;
+      this.episodes = res.data._embedded.cast;
 
     } catch (err) {
       console.log(err);
