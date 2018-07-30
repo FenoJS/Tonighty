@@ -45,6 +45,18 @@ body {
     color: #fff;
     padding: 1rem;
     border-radius: 5px; }
+  .btn--fav-big {
+    background-image: linear-gradient(to right, orange, red);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 20rem; }
+  .btn--fav-big2 {
+    background-image: linear-gradient(to right, #eeeeee, #1a1111);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 20rem; }
   .btn--info {
     background-color: transparent;
     margin-bottom: 1rem; }
