@@ -157,10 +157,10 @@ elements.results.addEventListener('click', (e) => {
 elements.results.addEventListener('click', (e) => {
   const btn = document.querySelector('.btn--fav-big');
 
-  if (btn) {
+  if (btn && (e.target === btn)) {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
-    btn.classList.toggle("btn--fav-big2")
+    btn.classList.toggle('btn--fav-big2');
     controlFavorites(id);
   }
 });
