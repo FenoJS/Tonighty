@@ -79,21 +79,29 @@ const controlShow = async() => {
 // POPULAR CONTROLLER
 
 const controlPopular = async() => {
-  // Create new Popular object
-  state.populars = new Popular();
+  // Fetch populars only if hasn't been already fetched
+  if (!state.populars) {
 
-  try {
-    // Get data
-    await state.populars.getPopular();
+    // Create new Popular object
+    state.populars = new Popular();
 
-    // Prepare UI for results
-    searchView.clearResults();
+    try {
+      // Get data
+      await state.populars.getPopular();
 
-    // Render popular shows
-    searchView.renderResult(state.populars.populars, 'Most popular shows');
-  } catch (err) {
-    console.log(err);
+      // Prepare UI for results
+      searchView.clearResults();
+
+      // Render popular shows
+      searchView.renderResult(state.populars.populars, 'Most popular shows');
+    } catch (err) {
+      console.log(err);
+    }
   }
+
+  // If populars has been already in state just render it
+  searchView.clearResults();
+  searchView.renderResult(state.populars.populars, 'Most popular shows');
 };
 
 // elements.popularLink.addEventListener('click', (e) => {
@@ -175,6 +183,7 @@ window.addEventListener('load', () => {
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
   const { hash } = window.location;
+  console.log(state)
 
   switch (hash) {
     case ('#populars'):
