@@ -1,9 +1,13 @@
 import { elements } from './base';
+import { renderEpisodes } from './episodesView';
 
 function rednerLikedBtn(id, storage) {
-  console.log(id, 'asdasdasdasda')
-  return storage.findIndex(e => e.id === id) !== -1;
+  if (storage) {
+    return storage.findIndex(e => e.id === id) !== -1;
+  }
+
 }
+
 
 export const renderShow = (show, header) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
@@ -13,7 +17,7 @@ export const renderShow = (show, header) => {
   <div class="show">
     <div class="show__details-box">
       <div class="show__img-box">
-        <img src="${show.img}" alt="#" class="show__img">
+        <img src="${show.image.original}" alt="#" class="show__img">
       </div>
       <div class="show__details">
         <div class="show__details-top">
@@ -27,11 +31,12 @@ export const renderShow = (show, header) => {
         <div class="show__info">
           <span class="show__runtime">Runtime: ${show.runtime} min</span>
           <span class="show__genres">Genres: ${show.genres}</span>
-          <span className="show__airdate">Next airdate: ${show.airdate}</span>
+          <span class="show__airdate">Next airdate: ${show.airdate}</span>
         </div>
       </div>
     </div>
     <div class="show__episodes-box"></div>
+
     <div class="show__crew-box"></div>
   </div>
   `;

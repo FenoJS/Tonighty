@@ -123,9 +123,8 @@ const controlFavorites = (id) => {
         const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.populars.populars[showIndex]);
       }
-      if ((state.populars && window.location.hash === `#/show/${id}`)) {
-        const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
-        state.favorites.addFavorite(state.populars.populars[showIndex]);
+      if ((state.show && window.location.hash === `#/show/${id}`)) {
+        state.favorites.addFavorite(state.show);
       }
     } else {
       state.favorites.deleteFavorite(parsedId);
@@ -175,16 +174,14 @@ window.addEventListener('load', () => {
 //window.addEventListener('load', controlShow);
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
-  const hash = window.location.hash;
-  console.log(e)
+  const { hash } = window.location;
+
   switch (hash) {
     case ('#populars'):
       controlPopular();
-      console.log('populars hash');
       break;
     case ('#favorites'):
       controlFavorites();
-      console.log('fav');
       break;
     default:
       controlShow();

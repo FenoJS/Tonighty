@@ -16,14 +16,17 @@ export const toggleFavBtn = (e) => {
 }
 
 function rednerLikedBtn(id, storage) {
-  return storage.findIndex(e => e.id === id) !== -1;
+  if (storage) {
+    return storage.findIndex(e => e.id === id) !== -1;
+  }
+
 }
 
 export const renderShow = (show) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
   const { id } = show;
 
-  console.log(rednerLikedBtn(id, storage))
+  //console.log(rednerLikedBtn(id, storage))
 
   // need to add placeholders for non-existing props
   const markup = `
