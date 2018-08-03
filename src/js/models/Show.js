@@ -11,7 +11,7 @@ export default class Show {
 
       if (res.data._links.nextepisode) {
         const airdateInfo = await axios(res.data._links.nextepisode.href);
-        this.airdate = airdateInfo.data.airdate;
+        this.airdateInfo = airdateInfo.data;
       }
       console.log(res)
       this.image = res.data.image;

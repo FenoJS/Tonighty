@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default class Favorites {
   constructor() {
     this.favorites = [];
@@ -8,9 +10,22 @@ export default class Favorites {
     return this.favorites.findIndex(e => e.id === id) !== -1;
   }
 
-  addFavorite(show) {
+  async getAirdate(show) {
+    try {
+      if (show._links && show._links.nextepisode) {
+        const airdate = await axios(show._links.nextepisode.href)
+        show.airdateInfo = airdate.data;
+        return show
+      }
+      return show
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async addFavorite(show) {
     console.log(show, 'show');
-    this.favorites.push(show);
+    this.favorites.push(await this.getAirdate(show));
 
     // Persist data in localStorage
     this.persistData();
