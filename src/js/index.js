@@ -4,6 +4,7 @@ import Popular from './models/Popular';
 import Favorites from './models/Favorites';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
+import * as upcomingView from './views/upcomingView';
 
 import { elements } from './views/base';
 
@@ -190,6 +191,7 @@ window.addEventListener('load', () => {
       controlPopular();
       break;
     case ('#favorites'):
+      upcomingView.renderUpcoming(state.favorites.favorites)
       controlFavorites();
       break;
     default:

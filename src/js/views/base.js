@@ -4,5 +4,7 @@ export const elements = {
   results: document.querySelector('.results'),
   contentHeading: document.querySelector('.content__heading'),
   popularLink: document.querySelector('[data-url="populars"]'),
-  upcomingBar: document.querySelector('upcoming-bar'),
-}
+  upcomingBar: document.querySelector('.upcoming-bar'),
+  seasonsList: document.querySelector('.show__season-list'),
+};
+
