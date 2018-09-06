@@ -10,14 +10,14 @@ export default class Favorites {
     return this.favorites.findIndex(e => e.id === id) !== -1;
   }
 
-  async getAirdate(show) {
+  static async getAirdate(show) {
     try {
       if (show._links && show._links.nextepisode) {
         const airdate = await axios(show._links.nextepisode.href)
         show.airdateInfo = airdate.data;
-        return show
+        return show;
       }
-      return show
+      return show;
     } catch (err) {
       console.log(err)
     }
@@ -25,7 +25,7 @@ export default class Favorites {
 
   async addFavorite(show) {
     console.log(show, 'show');
-    this.favorites.push(await this.getAirdate(show));
+    this.favorites.push(await Favorites.getAirdate(show));
 
     // Persist data in localStorage
     this.persistData();

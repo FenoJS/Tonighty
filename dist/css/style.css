@@ -102,6 +102,24 @@ body {
     font-size: 1.9rem;
     justify-content: space-between;
     align-items: center; }
+  .show__tabs {
+    display: flex;
+    flex: 0 0 100%;
+    height: 5rem;
+    background-color: #fff;
+    margin-top: 2rem; }
+  .show__season-list {
+    display: flex;
+    flex: 0 0 100%;
+    height: 5rem;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff; }
+  .show__season-item {
+    display: flex; }
+  .show__episodes-box {
+    display: flex;
+    flex-wrap: wrap; }
 
 .results-item {
   display: flex;
@@ -140,6 +158,11 @@ body {
     fill: #fff; }
 
 .upcoming-bar {
+  flex: 0 0 100%; }
+
+.episode {
+  width: 30rem;
+  height: 10rem;
   flex: 0 0 100%; }
 
 .header {

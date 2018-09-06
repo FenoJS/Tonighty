@@ -11,7 +11,7 @@
   display: flex;
   flex: 0 0 26rem;
   height: 37rem;
-  
+
 }
 
 &__img {
@@ -64,5 +64,31 @@
 
 &__crew-box {
 
+}
+
+&__tabs {
+  display: flex;
+  flex: 0 0 100%;
+  height: 5rem;
+  background-color: #fff;
+  margin-top: 2rem;
+}
+
+&__season-list {
+  display: flex;
+  flex: 0 0 100%;
+  height: 5rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+}
+
+&__season-item {
+  display: flex;
+}
+
+&__episodes-box {
+  display: flex;
+  flex-wrap: wrap;
 }
 }

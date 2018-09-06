@@ -26,7 +26,7 @@ export const renderShow = (show) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
   const { id } = show;
 
-  //console.log(rednerLikedBtn(id, storage))
+
 
   // need to add placeholders for non-existing props
   const markup = `
@@ -50,7 +50,11 @@ export const renderShow = (show) => {
   elements.results.insertAdjacentHTML('beforeend', markup);
 };
 
-export const renderResult = (shows, header) => {
+export const renderResult = (shows, header, max = 100) => {
   elements.contentHeading.textContent = header;
-  shows.forEach(renderShow);
+  shows.forEach((show, i) => {
+    if (i < max) {
+      renderShow(show);
+    }
+  });
 };

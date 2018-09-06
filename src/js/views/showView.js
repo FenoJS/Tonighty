@@ -17,7 +17,7 @@ function renderSeasonsCount(episodes) {
 
   for (let i = 0; i < seasonNumber; i++) {
     const markup = `<li class="show__season-item">Season${i + 1}</li>`;
-    el.insertAdjacentHTML('afterbegin', markup);
+    el.insertAdjacentHTML('beforeend', markup);
   }
 }
 
