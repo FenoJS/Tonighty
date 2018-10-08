@@ -1,3 +1,19 @@
 .upcoming-bar {
-  flex: 0 0 100%;
+  width: 100%;
+
+  &__header {
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    width: 100%;
+    list-style: none;
+  }
+
+  &__item {
+    flex: 0 0 33%;
+  }
 }
+

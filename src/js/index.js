@@ -2,12 +2,14 @@ import Search from './models/Search';
 import Show from './models/Show';
 import Popular from './models/Popular';
 import Favorites from './models/Favorites';
+import Schedule from './models/Schedule';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
 import * as upcomingView from './views/upcomingView';
 import * as episodesView from './views/episodesView';
 
 import { elements } from './views/base';
+import { getDateYYYYMMDD } from './helpers';
 
 // GLOBAL STATE
 
@@ -74,9 +76,16 @@ const controlShow = async() => {
   }
 };
 
+// SHOULD CHANGE TO DATA ATRIBUTE
+elements.results.addEventListener('click', (e) => {
+  const btn = e.target.closest('.show__season-item');
 
-
-//['hashchange', 'load'].forEach(e => window.addEventListener(e, controlShow));
+  if (btn) {
+    const number = btn.innerText.replace('Season', '');
+    console.log(number);
+    episodesView.renderEpisodes(state.show.episodes, parseInt(number, 10));
+  }
+});
 
 // POPULAR CONTROLLER
 
@@ -95,7 +104,7 @@ const controlPopular = async() => {
       searchView.clearResults();
 
       // Render popular shows
-      searchView.renderResult(state.populars.populars, 'Most popular shows', 20);
+      searchView.renderResult(state.populars.populars, 'Most popular shows', 40);
     } catch (err) {
       console.log(err);
     }
@@ -103,7 +112,7 @@ const controlPopular = async() => {
 
   // If populars has been already in state just render it
   searchView.clearResults();
-  searchView.renderResult(state.populars.populars, 'Most popular shows', 20);
+  searchView.renderResult(state.populars.populars, 'Most popular shows', 40);
 };
 
 // elements.popularLink.addEventListener('click', (e) => {
@@ -180,14 +189,31 @@ window.addEventListener('load', () => {
 });
 
 
-//
+// SCHEDULE CONTROLLER
+
+const controlSchedule = async() => {
+  const QueryDate = getDateYYYYMMDD();
+
+  state.schedule = new Schedule();
+
+  try {
+    state.schedule.getSchedule(QueryDate);
+  } catch (err) {
+    console.log(err)
+  }
+  searchView.clearResults();
+
+}
+
+
+
 // UPCOMING BAR CONTROLLER
-//
 
 const controlUpcomingBar = () => {
   upcomingView.clearUpcoming();
   upcomingView.renderUpcoming(state.favorites.favorites)
 }
+
 
 
 // ROUTER
@@ -206,19 +232,11 @@ const controlUpcomingBar = () => {
     case ('#favorites'):
       controlFavorites();
       break;
+    case ('#schedule'):
+      controlSchedule();
+      break;
     default:
       controlShow();
   }
 }));
 
-elements.results.addEventListener('click', (e) => {
-  const btn = e.target.closest('.show__season-item');
-  console.log(e)
-
-  if (btn) {
-    const number = btn.innerText.replace('Season', '')
-    console.log(number);
-    episodesView.renderEpisodes(state.show.episodes, parseInt(number, 10))
-
-  }
-});

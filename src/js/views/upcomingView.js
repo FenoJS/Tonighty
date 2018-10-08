@@ -20,7 +20,8 @@ export const clearUpcoming = () => {
 }
 
 export const renderUpcoming = (shows) => {
-  const markup = `<ul class="${elementString.upcomingBarList} ">UPCOMING TV SERIES</ul>`
+  const markup = `<h3 class="upcoming-bar__header" >upcoming TV series: </h3>
+                  <ul class="${elementString.upcomingBarList} "></ul>`;
   elements.upcomingBar.insertAdjacentHTML('beforeend', markup);
   shows.forEach(renderShow);
-}
+};

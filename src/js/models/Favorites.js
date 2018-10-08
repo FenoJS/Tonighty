@@ -17,7 +17,7 @@ export default class Favorites {
         show.airdateInfo = airdate.data;
         return show;
       }
-      return show;
+      return show; // ///////////???????????????????????////
     } catch (err) {
       console.log(err)
     }

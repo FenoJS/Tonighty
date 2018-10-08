@@ -1,5 +1,6 @@
 import { elements } from './base';
 import { renderEpisodes } from './episodesView';
+import { renderCast } from './castView';
 
 function rednerLikedBtn(id, storage) {
   if (storage) {
@@ -56,10 +57,12 @@ export const renderShow = (show, header) => {
     <ul class="show__season-list">
 
     </ul>
-    <div class="show__episodes-box"></div>
+    <div class="show__episodes-box">
+
+    </div>
 
 
-    <div class="show__crew-box"></div>
+    <div class="show__cast-box"></div>
   `;
 
   elements.contentHeading.textContent = `${header}`
@@ -67,4 +70,5 @@ export const renderShow = (show, header) => {
 
   renderSeasonsCount(show.episodes);
   renderEpisodes(show.episodes);
+  renderCast(show.cast);
 };

@@ -158,7 +158,16 @@ body {
     fill: #fff; }
 
 .upcoming-bar {
-  flex: 0 0 100%; }
+  width: 100%; }
+  .upcoming-bar__header {
+    text-transform: uppercase;
+    text-align: center; }
+  .upcoming-bar__list {
+    display: flex;
+    width: 100%;
+    list-style: none; }
+  .upcoming-bar__item {
+    flex: 0 0 33%; }
 
 .episode {
   width: 30rem;
