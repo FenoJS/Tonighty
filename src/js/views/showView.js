@@ -1,6 +1,6 @@
-import { elements } from './base';
+import { elements} from './base';
 import { renderEpisodes } from './episodesView';
-import { renderCast } from './castView';
+import { renderCasts } from './castView';
 
 function rednerLikedBtn(id, storage) {
   if (storage) {
@@ -11,7 +11,6 @@ function rednerLikedBtn(id, storage) {
 
 function renderSeasonsCount(episodes) {
   const el = document.querySelector('.show__season-list');
-
   const seasonNumber = episodes.reduce((a, b) => {
     return a.season > b.season ? a.season : b.season;
   });
@@ -54,15 +53,18 @@ export const renderShow = (show, header) => {
     <button class="show__tab-episodes">Episodes</button>
     <button class="show__tab-cast">Cast</button>
     </div>
-    <ul class="show__season-list">
 
-    </ul>
-    <div class="show__episodes-box">
+    <div class="show__episodes">
+      <ul class="show__season-list">
 
+      </ul>
+      <div class="show__episodes-box">
+
+      </div>
     </div>
 
 
-    <div class="show__cast-box"></div>
+    <div class="show__cast hidden"></div>
   `;
 
   elements.contentHeading.textContent = `${header}`
@@ -70,5 +72,5 @@ export const renderShow = (show, header) => {
 
   renderSeasonsCount(show.episodes);
   renderEpisodes(show.episodes);
-  renderCast(show.cast);
+  renderCasts(show.cast);
 };

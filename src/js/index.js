@@ -8,7 +8,7 @@ import * as showView from './views/showView';
 import * as upcomingView from './views/upcomingView';
 import * as episodesView from './views/episodesView';
 
-import { elements } from './views/base';
+import { elements, elementString } from './views/base';
 import { getDateYYYYMMDD } from './helpers';
 
 // GLOBAL STATE
@@ -75,6 +75,24 @@ const controlShow = async() => {
     }
   }
 };
+
+//Toggle epsiodes nad cast
+elements.results.addEventListener('click', (e) => {
+  const castTab = e.target.closest('.show__tabs');
+  const cast = document.querySelector('.show__cast')
+  const episodes = document.querySelector('.show__episodes')
+
+  if (castTab && e.target.className === 'show__tab-cast') {
+    episodes.classList.add('hidden')
+    cast.classList.remove('hidden')
+
+  }
+  if (castTab && e.target.className === 'show__tab-episodes') {
+    cast.classList.add('hidden')
+    episodes.classList.remove('hidden')
+  }
+
+})
 
 // SHOULD CHANGE TO DATA ATRIBUTE
 elements.results.addEventListener('click', (e) => {
@@ -197,11 +215,16 @@ const controlSchedule = async() => {
   state.schedule = new Schedule();
 
   try {
-    state.schedule.getSchedule(QueryDate);
+    await state.schedule.getSchedule(QueryDate);
+    searchView.clearResults();
+    searchView.renderResult(state.schedule.schedule, 'Upcoming Shows:');
+    console.log(state.schedule.schedule)
   } catch (err) {
     console.log(err)
   }
-  searchView.clearResults();
+
+
+
 
 }
 
