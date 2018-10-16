@@ -16,7 +16,7 @@ function renderSeasonsCount(episodes) {
   });
 
   for (let i = 0; i < seasonNumber; i++) {
-    const markup = `<li class="show__season-item">Season${i + 1}</li>`;
+    const markup = `<li class="show__season-item"><span>Season${i + 1}</span></li>`;
     el.insertAdjacentHTML('beforeend', markup);
   }
 }
@@ -35,7 +35,7 @@ export const renderShow = (show, header) => {
       <div class="show__details">
         <div class="show__details-top">
           <span class="show__rating">Rating: ${show.rating}/10</span>
-          <button class="btn ${rednerLikedBtn(parseInt(id, 10), storage) ? 'btn--fav-big btn--fav-big2' : 'btn--fav-big'}">Add to favorites</button>
+          <button class="btn btn__fav ${rednerLikedBtn(parseInt(id, 10), storage) ? 'btn__fav--big btn__fav--big2' : 'btn__fav--big'}">Add to favorites</button>
         </div>
         <div class="show__details-mid">
           <h3 class="show__desc-heading heading-tertiary">Description: </h3>
@@ -50,8 +50,8 @@ export const renderShow = (show, header) => {
     </div>
   </div>
     <div class="show__tabs">
-    <button class="show__tab-episodes">Episodes</button>
-    <button class="show__tab-cast">Cast</button>
+    <button class="show__tab--episodes btn btn__tab btn__tab--active">Episodes</button>
+    <button class="show__tab--cast btn btn__tab">Cast</button>
     </div>
 
     <div class="show__episodes">

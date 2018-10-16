@@ -3,42 +3,48 @@
   padding: 0.5rem;
   cursor: pointer;
 
-  &--fav-small {
-    background-image: linear-gradient(to right, orange, red);
+  &__fav {
     color: #fff;
     padding: 1rem;
+
+    &--small {
+    background-image: linear-gradient(to right, orange, red);
     border-radius: 5px;
+    }
 
-  }
-
-  &--fav-small2 {
+    &--small2 {
     background-image: linear-gradient(to right, rgb(238, 238, 238), rgb(26, 17, 17));
-    color: #fff;
-    padding: 1rem;
     border-radius: 5px;
+    }
 
-  }
-
-  &--fav-big {
+    &--big {
     background-image: linear-gradient(to right, orange, red);
-    color: #fff;
-    padding: 1rem;
     border-radius: 5px;
     width: 20rem;
+    }
 
-  }
-
-  &--fav-big2 {
+    &--big2 {
     background-image: linear-gradient(to right, rgb(238, 238, 238), rgb(26, 17, 17));
-    color: #fff;
-    padding: 1rem;
     border-radius: 5px;
     width: 20rem;
-
+    }
   }
 
-  &--info {
+
+
+  &__info {
     background-color: transparent;
     margin-bottom: 1rem;
   }
+
+  &__tab {
+    padding: 2rem;
+
+    &--active {
+      background: $color-primary-dark-2;
+      color: #fff
+    }
+  }
+
+
 }

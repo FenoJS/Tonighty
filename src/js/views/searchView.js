@@ -11,7 +11,7 @@ export const clearResults = () => {
 };
 
 export const toggleFavBtn = (e) => {
-  e.target.classList.toggle("btn--fav-small2")
+  e.target.classList.toggle("btn__fav--small2")
 
 }
 
@@ -36,12 +36,12 @@ export const renderShow = (show) => {
       <p class="results-item__network">${show.network ? show.network.name : ''}</p>
       <a href="#/show/${show.id}">
         <div class="results-item__back">
-          <button class="btn btn--info">
+          <button class="btn btn__info">
             <svg class="results-item__icon">
               <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
             </svg>
           </button>
-          <button class="btn ${rednerLikedBtn(id, storage) ? 'btn--fav-small btn--fav-small2' : 'btn--fav-small'}">Add to favorites</button>
+          <button class="btn btn__fav ${rednerLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">Add to favorites</button>
         </div>
       </a>
     </div>

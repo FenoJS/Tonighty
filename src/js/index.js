@@ -82,12 +82,12 @@ elements.results.addEventListener('click', (e) => {
   const cast = document.querySelector('.show__cast')
   const episodes = document.querySelector('.show__episodes')
 
-  if (castTab && e.target.className === 'show__tab-cast') {
+  if (castTab && e.target.classList.contains('show__tab--cast')) {
     episodes.classList.add('hidden')
     cast.classList.remove('hidden')
 
   }
-  if (castTab && e.target.className === 'show__tab-episodes') {
+  if (castTab && e.target.classList.contains('show__tab--episodes')) {
     cast.classList.add('hidden')
     episodes.classList.remove('hidden')
   }
@@ -180,7 +180,7 @@ const controlFavorites = (id) => {
 }
 
 elements.results.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn--fav-small', 'btn--fav-small *');
+  const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
 
   if (btn) {
     e.preventDefault();
@@ -189,14 +189,14 @@ elements.results.addEventListener('click', (e) => {
     controlFavorites(id);
   }
 });
-
+// need to think about better logic because of doubled class inisde fav buttons
 elements.results.addEventListener('click', (e) => {
-  const btn = document.querySelector('.btn--fav-big');
+  const btn = document.querySelector('.btn__fav--big');
 
   if (btn && (e.target === btn)) {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
-    btn.classList.toggle('btn--fav-big2');
+    btn.classList.toggle('btn__fav--big2');
     controlFavorites(id);
   }
 });

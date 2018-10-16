@@ -13,7 +13,7 @@ const renderEpisode = (episode, season) => {
         <span class="episode__airdate">Airdate: ${episode.airdate} ${episode.airtime} - x days ago/in x days</span>
       </div>
       <div className="episode__buttons">
-        <button class="btn btn--fav-small">Watched</button>
+        <button class="btn btn__fav btn__fav--small">Watched</button>
       </div>
     </div>`
     el.insertAdjacentHTML('beforeend', markup);
