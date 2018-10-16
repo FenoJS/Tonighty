@@ -76,7 +76,7 @@ const controlShow = async() => {
   }
 };
 
-//Toggle epsiodes nad cast
+//Toggle epsiodes and cast
 elements.results.addEventListener('click', (e) => {
   const castTab = e.target.closest('.show__tabs');
   const cast = document.querySelector('.show__cast')
