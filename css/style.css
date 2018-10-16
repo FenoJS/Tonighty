@@ -38,31 +38,31 @@ body {
   border: none;
   padding: 0.5rem;
   cursor: pointer; }
-  .btn--fav-small {
-    background-image: linear-gradient(to right, orange, red);
+  .btn__fav {
     color: #fff;
-    padding: 1rem;
-    border-radius: 5px; }
-  .btn--fav-small2 {
-    background-image: linear-gradient(to right, #eeeeee, #1a1111);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px; }
-  .btn--fav-big {
-    background-image: linear-gradient(to right, orange, red);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    width: 20rem; }
-  .btn--fav-big2 {
-    background-image: linear-gradient(to right, #eeeeee, #1a1111);
-    color: #fff;
-    padding: 1rem;
-    border-radius: 5px;
-    width: 20rem; }
-  .btn--info {
+    padding: 1rem; }
+    .btn__fav--small {
+      background-image: linear-gradient(to right, orange, red);
+      border-radius: 5px; }
+    .btn__fav--small2 {
+      background-image: linear-gradient(to right, #eeeeee, #1a1111);
+      border-radius: 5px; }
+    .btn__fav--big {
+      background-image: linear-gradient(to right, orange, red);
+      border-radius: 5px;
+      width: 20rem; }
+    .btn__fav--big2 {
+      background-image: linear-gradient(to right, #eeeeee, #1a1111);
+      border-radius: 5px;
+      width: 20rem; }
+  .btn__info {
     background-color: transparent;
     margin-bottom: 1rem; }
+  .btn__tab {
+    padding: 2rem; }
+    .btn__tab--active {
+      background: #1F2833;
+      color: #fff; }
 
 .search-bar {
   display: flex;
@@ -114,12 +114,16 @@ body {
   .show__season-list {
     display: flex;
     flex: 0 0 100%;
-    height: 5rem;
     justify-content: space-around;
     align-items: center;
     background-color: #fff; }
   .show__season-item {
-    display: flex; }
+    display: flex;
+    width: 100%;
+    padding: 1.5rem 5rem;
+    justify-content: center;
+    font-size: 1.4rem;
+    border: 1px solid red; }
   .show__episodes-box {
     display: flex;
     flex-wrap: wrap; }
