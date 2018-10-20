@@ -1,99 +1,111 @@
 .show {
   display: flex;
-&__details-box {
-  display: flex;
-  background-color: #fff;
-  padding: 1rem;
-  padding-bottom: 10rem;
-}
 
-&__img-box {
-  display: flex;
-  flex: 0 0 26rem;
-  height: 37rem;
+  &__details-box {
+    display: flex;
+    background-color: #fff;
+    padding: 1rem;
+    padding-bottom: 10rem;
+  }
 
-}
+  &__img-box {
+    display: flex;
+    flex: 0 0 26rem;
+    height: 37rem;
 
-&__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-}
+  }
 
-&__details {
-  display: flex;
-  flex-direction: column;
-  margin: 0 2rem;
-  font-size: 1.9rem;
-  justify-content: space-between;
-  align-items: center;
-}
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+  }
 
-&__details-top {
+  &__details {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+    font-size: 1.9rem;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-}
+  &__details-top {
 
-&__details-mid {
+  }
 
-}
+  &__details-mid {
 
-&__description {
+  }
 
-}
+  &__description {
 
-&__info {
+  }
 
-}
+  &__info {
 
-&__rating {
+  }
 
-}
+  &__rating {
 
-&__runtime {
+  }
 
-}
+  &__runtime {
 
-&__genres {
+  }
 
-}
+  &__genres {
 
-&__episodes-box {
+  }
 
-}
+  &__episodes-box {
 
-&__crew-box {
+  }
 
-}
+  &__crew-box {
 
-&__tabs {
-  display: flex;
-  flex: 0 0 100%;
-  height: 5rem;
-  background-color: #fff;
-  margin-top: 2rem;
-}
+  }
 
-&__season-list {
-  display: flex;
-  flex: 0 0 100%;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #fff;
-}
+  &__tabs {
+    display: flex;
+    flex: 0 0 100%;
+    height: 5rem;
+    background-color: #fff;
+    margin-top: 2rem;
+  }
 
-&__season-item {
-  display: flex;
-  width: 100%;
-  padding: 1.5rem 5rem;
-  justify-content: center;
-  font-size: 1.4rem;
-  border: 1px solid red;
+  &__season-list {
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+  }
 
-}
+  &__season-item {
+    display: flex;
+    width: 100%;
+    padding: 1.5rem 5rem;
+    justify-content: center;
+    font-size: 1.4rem;
+    border: 1px solid red;
 
-&__episodes-box {
-  display: flex;
-  flex-wrap: wrap;
-}
+  }
+
+  &__episodes-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__cast-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .5rem;
+    justify-content: space-between;
+  }
+
+  &__cast-header, &__episodes-header {
+    text-align: center;
+  }
 }

@@ -127,6 +127,13 @@ body {
   .show__episodes-box {
     display: flex;
     flex-wrap: wrap; }
+  .show__cast-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .5rem;
+    justify-content: space-between; }
+  .show__cast-header, .show__episodes-header {
+    text-align: center; }
 
 .results-item {
   display: flex;
@@ -194,6 +201,25 @@ body {
     align-items: center; }
   .episode__info {
     font-size: 2rem; }
+
+.cast {
+  display: flex;
+  width: 24.5%;
+  background-color: #fff;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem; }
+  .cast__img {
+    width: 125px;
+    border-radius: .5rem; }
+  .cast__info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center; }
+  .cast__character {
+    font-size: 1.5rem; }
 
 .header {
   display: flex;

@@ -1,0 +1,26 @@
+.cast {
+  display: flex;
+  width: 24.5%;
+  background-color: #fff;
+  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+
+  &__img {
+    width: 125px;
+    border-radius: .5rem;
+  }
+
+  &__info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &__character {
+    font-size: 1.5rem;
+  }
+
+}

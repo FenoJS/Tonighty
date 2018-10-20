@@ -55,6 +55,7 @@ export const renderShow = (show, header) => {
     </div>
 
     <div class="show__episodes">
+    <h3 class="show__episodes-header heading-secondary">${show.name} episodes</h3>
       <ul class="show__season-list">
 
       </ul>
@@ -64,7 +65,10 @@ export const renderShow = (show, header) => {
     </div>
 
 
-    <div class="show__cast hidden"></div>
+    <div class="show__cast hidden">
+      <h3 class="show__cast-header heading-secondary">${show.name} cast</h3>
+      <div class="show__cast-box"></div>
+    </div>
   `;
 
   elements.contentHeading.textContent = `${header}`
