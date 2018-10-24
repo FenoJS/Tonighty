@@ -13,7 +13,7 @@
 <body>
   <header class="header">
     <div class="wrapper">
-      <div class="header-box">
+      <div class="header__box">
         <a href="/"><h1 class="header__logo">tonighty</h1></a>
         <nav class="nav">
           <ul class="nav__list">
@@ -23,53 +23,20 @@
           </ul>
         </nav>
       </div>
+    </div>
+  </header>
+  <main class="content">
+    <div class="hp-box">
+      <h2 class="hp-box__heading heading-secondary--1">don't miss any <span>TV shows</span> ever again!</h2>
+      <h3 class="hp-box__heading heading-tertiary--1">Keep track of your favorites TV shows progress right here!</h3>
       <form class="search-bar" action="#">
         <input type="text" class="search-bar__input" placeholder="Search series">
         <button class="btn search-bar__btn">
           <svg class="search-bar__icon">
             <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
           </svg>
-        </button>
-      </form>
-    </div>
-  </header>
-  <main class="content">
-    <div class="wrapper">
-      <div class="upcoming-bar"></div>
-      <h2 class="content__heading heading-secondary">HEADER PLACEHOLDER</h2>
-      <div class="results">
-        <!-- <div class="results-item">
-          <img src="#" alt="" class="results-item__img">
-          <h3 class="results-item__name">Flash</h3>
-          <p class="results-item__network">The CW</p>
-          <div class="results-item__back">
-            <a href="" class="btn btn__info">More info</a>
-            <button class="btn btn__fav">Add to favorites</button>
-          </div>
-        </div>
-      </div> -->
-
-
-        <!-- <div class="show">
-          <div class="show__details-box">
-            <img src="#" alt="#" class="show__img">
-            <div class="show__details">
-              <p class="show__description"></p>
-              <div class="show__info">
-                <span class="show__rating"></span>
-                <span class="show__runtime"></span>
-                <span class="show__genres"></span>
-              </div>
-            </div>
-          </div>
-          <div class="show__episodes"></div>
-          <div class="show__crew-box"></div>
-        </div> -->
-
-
-        <div class="results__pagination"></div>
-
-      </div>
+      </button>
+    </form>
     </div>
   </main>
 </body>

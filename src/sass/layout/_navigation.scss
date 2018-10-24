@@ -1,6 +1,6 @@
 .nav {
   flex: 1;
-  
+
   &__list {
   list-style: none;
   font-size: 1.4rem;
@@ -10,13 +10,12 @@
 
   &__item {
     display: flex;
-    flex: 1;
     justify-content: center;
   }
 
   &__link:link,
   &__link:visited  {
-    color: $color-primary-light-1;
+    color: #fff;
     text-decoration: none;
     text-transform: uppercase;
     padding: 1.5rem 3.5rem;

@@ -8,10 +8,29 @@
 
 .heading-secondary {
   color: $color-primary-light-2;
-  font-size: 3rem;
+  font-size: 4rem;
   text-transform: uppercase;
+
+  &--1 {
+    color: #fff;
+    font-size: 5rem;
+    text-transform: uppercase;
+    margin-top: -9rem;
+  }
+
+  &--1 > span {
+    color: $color-primary-light-1;
+  }
 }
 
 .heading-tertiary {
-  
+  color: $color-primary-light-2;
+  font-size: 3rem;
+  text-transform: uppercase;
+
+  &--1 {
+    color: #fff;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
 }

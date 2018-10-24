@@ -1,8 +1,10 @@
 .search-bar{
   display: flex;
   justify-content: center;
-  margin: auto;
-  margin-bottom: 2rem;
+
+  &--top {
+    margin: auto;
+  }
 
   &__input {
     padding: 1rem 2rem;
@@ -10,6 +12,10 @@
     border-radius: 100px;
     margin-right: -5rem;
     width: 45rem;
+
+    &--top {
+      width: 27rem;
+    }
   }
 
   &__icon{

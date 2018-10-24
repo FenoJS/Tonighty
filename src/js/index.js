@@ -9,27 +9,30 @@ import * as upcomingView from './views/upcomingView';
 import * as episodesView from './views/episodesView';
 
 
-import { elements, elementString } from './views/base';
+import { elements, elementString, renderMainTemplate } from './views/base';
 import { getDateYYYYMMDD } from './helpers';
-
+console.log(elements)
 // GLOBAL STATE
 
 const state = {};
 
 // SEARCH CONTROLLER
 
+
+
 const controlSearch = async() => {
   // Get query from view
   const query = searchView.getInput();
-
   if (query) {
+
     // Create new Search Object
     state.search = new Search(query);
 
     // Change URL
-    window.location.hash = '#';
+    window.location.hash = '#search';
 
     // Prepare UI for results
+    renderMainTemplate();
     searchView.clearInput();
     searchView.clearResults();
     //searchView.toggleFavBtn(state.favorites.favorites)
@@ -45,10 +48,7 @@ const controlSearch = async() => {
   }
 };
 
-elements.searchForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  controlSearch();
-});
+
 
 
 // SHOW CONTROLLER
@@ -75,10 +75,10 @@ const controlShow = async() => {
       console.log(err);
     }
   }
-};
 
+};
 //Toggle epsiodes and cast
-elements.results.addEventListener('click', (e) => {
+elements.mainContent.addEventListener('click', (e) => {
   const castTab = e.target.closest('.show__tabs');
   const cast = document.querySelector('.show__cast')
   const episodes = document.querySelector('.show__episodes')
@@ -96,7 +96,7 @@ elements.results.addEventListener('click', (e) => {
 })
 
 // SHOULD CHANGE TO DATA ATRIBUTE
-elements.results.addEventListener('click', (e) => {
+elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.show__season-item');
 
   if (btn) {
@@ -105,6 +105,7 @@ elements.results.addEventListener('click', (e) => {
     episodesView.renderEpisodes(state.show.episodes, parseInt(number, 10));
   }
 });
+
 
 // POPULAR CONTROLLER
 
@@ -118,7 +119,7 @@ const controlPopular = async() => {
     try {
       // Get data
       await state.populars.getPopular();
-
+      console.log('populars not in state')
       // Prepare UI for results
       searchView.clearResults();
 
@@ -127,11 +128,13 @@ const controlPopular = async() => {
     } catch (err) {
       console.log(err);
     }
+  } else {
+    // If populars has been already in state just render it
+    searchView.clearResults();
+    searchView.renderResult(state.populars.populars, 'Most popular shows', 40);
   }
 
-  // If populars has been already in state just render it
-  searchView.clearResults();
-  searchView.renderResult(state.populars.populars, 'Most popular shows', 40);
+
 };
 
 // elements.popularLink.addEventListener('click', (e) => {
@@ -153,7 +156,7 @@ const controlFavorites = (id) => {
 
     // Check if show is already liked and depend of result add it or remove from Favorites
     if (!state.favorites.isLiked(parsedId)) {
-      if ((state.search && window.location.hash === '')) {
+      if ((state.search && window.location.hash === '#search')) {
         const showIndex = state.search.result.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.search.result[showIndex]);
       }
@@ -179,8 +182,7 @@ const controlFavorites = (id) => {
 
 
 }
-
-elements.results.addEventListener('click', (e) => {
+elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
 
   if (btn) {
@@ -191,7 +193,7 @@ elements.results.addEventListener('click', (e) => {
   }
 });
 // need to think about better logic because of doubled class inisde fav buttons
-elements.results.addEventListener('click', (e) => {
+elements.mainContent.addEventListener('click', (e) => {
   const btn = document.querySelector('.btn__fav--big');
 
   if (btn && (e.target === btn)) {
@@ -201,6 +203,7 @@ elements.results.addEventListener('click', (e) => {
     controlFavorites(id);
   }
 });
+
 
 window.addEventListener('load', () => {
   state.favorites = new Favorites();
@@ -228,39 +231,53 @@ const controlSchedule = async() => {
 
 
 }
+  // UPCOMING BAR CONTROLLER
 
-
-
-// UPCOMING BAR CONTROLLER
-
-const controlUpcomingBar = () => {
-  upcomingView.clearUpcoming();
-  upcomingView.renderUpcoming(state.favorites.favorites)
-}
+  const controlUpcomingBar = () => {
+    upcomingView.clearUpcoming();
+    upcomingView.renderUpcoming(state.favorites.favorites)
+  }
 
 
 
 // ROUTER
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
-  const { hash } = window.location;
   console.log(state)
+  const { hash } = window.location;
+  const showRe = /^#\/show\/\w*/
   window.scrollTo(0,0);
 
-  controlUpcomingBar();
 
-  switch (hash) {
-    case ('#populars'):
+  if (hash !== '') {
+    renderMainTemplate();
+    controlUpcomingBar();
+
+
+  }
+  elements.searchForm.addEventListener('submit', (e) => {
+    console.log('xxxx')
+    e.preventDefault();
+    controlSearch();
+  });
+
+  switch (true) {
+    case ('#populars' === hash):
       controlPopular();
       break;
-    case ('#favorites'):
+    case ('#favorites' === hash):
       controlFavorites();
       break;
-    case ('#schedule'):
+    case ('#schedule' === hash):
       controlSchedule();
       break;
-    default:
-      controlShow();
+    case (/^#\/show\/\w*/.test(hash)):
+      controlShow();;
+      break;
   }
+
 }));
+
+
+
 

@@ -22,7 +22,7 @@ function rednerLikedBtn(id, storage) {
 
 }
 
-export const renderShow = (show) => {
+const renderShow = (show) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
   const { id } = show;
 
@@ -51,6 +51,7 @@ export const renderShow = (show) => {
 };
 
 export const renderResult = (shows, header, max = 100) => {
+  console.log('render results')
   elements.contentHeading.textContent = header;
   shows.forEach((show, i) => {
     if (i < max) {

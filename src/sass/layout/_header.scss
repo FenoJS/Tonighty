@@ -1,11 +1,10 @@
 .header {
   display: flex;
-  background-color: $color-primary-dark-2;
+  background-color: #2a2736;
 }
 
-.header-box {
+.header__box {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 0 0 100%;
 }
