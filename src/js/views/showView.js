@@ -50,12 +50,12 @@ export const renderShow = (show, header) => {
     </div>
   </div>
     <div class="show__tabs">
-    <button class="show__tab--episodes btn btn__tab btn__tab--active">Episodes</button>
-    <button class="show__tab--cast btn btn__tab">Cast</button>
+    <button class="show__tabs--episodes btn btn__tab btn__tab--active">Episodes</button>
+    <button class="show__tabs--cast btn btn__tab">Cast</button>
+    <h3 class="show__tabs-header heading-tertiary">${show.name} episodes</h3>
     </div>
 
     <div class="show__episodes">
-    <h3 class="show__episodes-header heading-tertiary">${show.name} episodes</h3>
       <ul class="show__season-list">
 
       </ul>
@@ -66,7 +66,6 @@ export const renderShow = (show, header) => {
 
 
     <div class="show__cast hidden">
-      <h3 class="show__cast-header heading-tertiary">${show.name} cast</h3>
       <div class="show__cast-box"></div>
     </div>
   `;

@@ -82,13 +82,19 @@ elements.mainContent.addEventListener('click', (e) => {
   const castTab = e.target.closest('.show__tabs');
   const cast = document.querySelector('.show__cast')
   const episodes = document.querySelector('.show__episodes')
+  const header = document.querySelector('.show__tabs-header')
 
-  if (castTab && e.target.classList.contains('show__tab--cast')) {
+  if (castTab && e.target.classList.contains('show__tabs--cast')) {
+    header.innerText = ''
+    header.innerText = `${state.show.name} cast`
     episodes.classList.add('hidden')
     cast.classList.remove('hidden')
 
+
   }
-  if (castTab && e.target.classList.contains('show__tab--episodes')) {
+  if (castTab && e.target.classList.contains('show__tabs--episodes')) {
+    header.innerText = ''
+    header.innerText = `${state.show.name} episodes`
     cast.classList.add('hidden')
     episodes.classList.remove('hidden')
   }

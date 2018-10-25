@@ -11,6 +11,7 @@
   &__item {
     display: flex;
     justify-content: center;
+
   }
 
   &__link:link,
@@ -19,5 +20,6 @@
     text-decoration: none;
     text-transform: uppercase;
     padding: 1.5rem 3.5rem;
+
     }
 }
