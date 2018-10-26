@@ -8,13 +8,13 @@
     padding: 1rem;
 
     &--small {
-    background-image: linear-gradient(to right, orange, red);
-    border-radius: 5px;
+      width: 100%;
+      background-color: $color-primary-light-2;
+      margin-top: 5px;
     }
 
     &--small2 {
-    background-image: linear-gradient(to right, rgb(238, 238, 238), rgb(26, 17, 17));
-    border-radius: 5px;
+      background-color: $color-primary-light-1;
     }
 
     &--big {

@@ -12,6 +12,12 @@ export const clearResults = () => {
 
 export const toggleFavBtn = (e) => {
   e.target.classList.toggle("btn__fav--small2")
+  
+  if(e.target.innerText === 'Remove') {
+    e.target.innerText = 'Add to favorites'
+  } else {
+    e.target.innerText = 'Remove'
+  }
 
 }
 
@@ -26,24 +32,25 @@ const renderShow = (show) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
   const { id } = show;
 
+  const buttonText = rednerLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
 
 
   // need to add placeholders for non-existing props
   const markup = `
     <div class="results-item">
-      <img src="${show.image ? show.image.medium : ''}" alt="${show.name}" class="results-item__img">
+      <a href="#/show/${show.id}" class="results-item__link">
+        <img src="${show.image ? show.image.medium : ''}" alt="${show.name}" class="results-item__img">
+        <div class="results-item__back">
+        <button class="btn btn__info">
+          <svg class="results-item__icon">
+            <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
+          </svg>
+        </button>
+      </div>
+      </a>
       <h3 class="results-item__name">${show.name}</h3>
       <p class="results-item__network">${show.network ? show.network.name : ''}</p>
-      <a href="#/show/${show.id}">
-        <div class="results-item__back">
-          <button class="btn btn__info">
-            <svg class="results-item__icon">
-              <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
-            </svg>
-          </button>
-          <button class="btn btn__fav ${rednerLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">Add to favorites</button>
-        </div>
-      </a>
+      <button class="btn btn__fav ${rednerLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">${buttonText}</button>
     </div>
   `;
 

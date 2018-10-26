@@ -193,7 +193,7 @@ elements.mainContent.addEventListener('click', (e) => {
 
   if (btn) {
     e.preventDefault();
-    const id = btn.parentNode.parentNode.getAttribute('href').replace('#/show/', ''); // Need to add better selector
+    const id = btn.parentNode.querySelector('.results-item__link').getAttribute('href').replace('#/show/', ''); // Need to add better selector
     searchView.toggleFavBtn(e);
     controlFavorites(id);
   }
