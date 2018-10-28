@@ -10,8 +10,7 @@ import * as episodesView from './views/episodesView';
 
 
 import { elements, elementString, renderMainTemplate } from './views/base';
-import { getDateYYYYMMDD } from './helpers';
-console.log(elements)
+import { getDateYYYYMMDD, toggleFavBtn } from './helpers';
 // GLOBAL STATE
 
 const state = {};
@@ -41,7 +40,7 @@ const controlSearch = async() => {
       await state.search.getResult();
       console.log(state)
       // Render results and header
-      searchView.renderResult(state.search.result, `Searching for ${state.search.query}`);
+      searchView.renderResult(state.search.result, `Results for ${state.search.query}`);
     } catch (err) {
       console.log(err);
     }
@@ -194,7 +193,7 @@ elements.mainContent.addEventListener('click', (e) => {
   if (btn) {
     e.preventDefault();
     const id = btn.parentNode.querySelector('.results-item__link').getAttribute('href').replace('#/show/', ''); // Need to add better selector
-    searchView.toggleFavBtn(e);
+    toggleFavBtn(e, 'btn__fav--small2');
     controlFavorites(id);
   }
 });
@@ -205,7 +204,7 @@ elements.mainContent.addEventListener('click', (e) => {
   if (btn && (e.target === btn)) {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
-    btn.classList.toggle('btn__fav--big2');
+    toggleFavBtn(e, 'btn__fav--big2');
     controlFavorites(id);
   }
 });

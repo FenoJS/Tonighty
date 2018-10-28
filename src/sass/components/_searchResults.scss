@@ -9,6 +9,8 @@
   position: relative;
   max-width: 23rem;
   box-shadow: $shadow-light;
+  justify-content: space-between;
+  color: $color-primary-dark-1;
 
   &__link {
     position: relative;
@@ -22,10 +24,12 @@
 
   &__name {
     font-size: 1.6rem;
+    text-align: center;
   }
 
   &__network {
     font-size: 2rem;
+    text-align: center;
   }
 
   &__back {

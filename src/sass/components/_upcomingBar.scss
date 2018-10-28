@@ -1,5 +1,6 @@
 .upcoming-bar {
   width: 100%;
+  color: $color-primary-dark-1;
 
   &__header {
     text-transform: uppercase;
@@ -14,6 +15,7 @@
 
   &__item {
     flex: 0 0 33%;
+    font-size: 1.5rem;
   }
 }
 

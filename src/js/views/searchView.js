@@ -10,16 +10,6 @@ export const clearResults = () => {
   elements.results.innerHTML = '';
 };
 
-export const toggleFavBtn = (e) => {
-  e.target.classList.toggle("btn__fav--small2")
-  
-  if(e.target.innerText === 'Remove') {
-    e.target.innerText = 'Add to favorites'
-  } else {
-    e.target.innerText = 'Remove'
-  }
-
-}
 
 function rednerLikedBtn(id, storage) {
   if (storage) {

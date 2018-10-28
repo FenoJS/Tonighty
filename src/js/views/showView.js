@@ -26,6 +26,8 @@ export const renderShow = (show, header) => {
   const storage = JSON.parse(localStorage.getItem('favorites'));
   const { id } = show;
 
+  const buttonText = rednerLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
+
   const markup = `
   <div class="show">
     <div class="show__details-box">
@@ -35,7 +37,7 @@ export const renderShow = (show, header) => {
       <div class="show__details">
         <div class="show__details-top">
           <span class="show__rating">Rating: ${show.rating}/10</span>
-          <button class="btn btn__fav ${rednerLikedBtn(parseInt(id, 10), storage) ? 'btn__fav--big btn__fav--big2' : 'btn__fav--big'}">Add to favorites</button>
+          <button class="btn btn__fav ${rednerLikedBtn(parseInt(id, 10), storage) ? 'btn__fav--big btn__fav--big2' : 'btn__fav--big'}">${buttonText}</button>
         </div>
         <div class="show__details-mid">
           <h3 class="show__desc-heading heading-tertiary">Description: </h3>

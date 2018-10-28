@@ -9,3 +9,16 @@ export const getDateYYYYMMDD = () => {
 
   return `${year}-${mm}-${dd}`;
 }
+
+
+export const toggleFavBtn = (e, toggleSelector) => {
+  console.log(e.target)
+  e.target.classList.toggle(toggleSelector)
+
+  if(e.target.innerText === 'Remove') {
+    e.target.innerText = 'Add to favorites'
+  } else {
+    e.target.innerText = 'Remove'
+  }
+
+}

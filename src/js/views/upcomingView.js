@@ -5,10 +5,13 @@ const renderShow = (show) => {
     const el = document.querySelector(`.${elementString.upcomingBarList}`)
     const markup =
       `<li class="upcoming-bar__item">
-        ${show.name}
-        S0${show.airdateInfo.season}E0${show.airdateInfo.number}
-        ${show.airdateInfo.airdate}
-        ${show.airdateInfo.airtime}
+        <div class="upcoming-bar__info">
+          ${show.name} S0${show.airdateInfo.season}E0${show.airdateInfo.number}
+        </div>
+        <div class="upcoming-bar__date">
+          ${show.airdateInfo.airdate}
+          ${show.airdateInfo.airtime}
+        </div>
       </li>`;
 
     el.insertAdjacentHTML('beforeend', markup);
@@ -22,7 +25,7 @@ export const clearUpcoming = () => {
 
 export const renderUpcoming = (shows) => {
   console.log('test')
-  const markup = `<h3 class="upcoming-bar__header" >upcoming TV series: </h3>
+  const markup = `<h3 class="upcoming-bar__header" >upcoming shows: </h3>
                   <ul class="${elementString.upcomingBarList} "></ul>`;
   elements.upcomingBar.insertAdjacentHTML('beforeend', markup);
   shows.forEach(renderShow);

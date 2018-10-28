@@ -18,15 +18,13 @@
     }
 
     &--big {
-    background-image: linear-gradient(to right, orange, red);
-    border-radius: 5px;
-    width: 20rem;
+      background-color: $color-primary-light-2;
+      width: 20rem;
     }
 
     &--big2 {
-    background-image: linear-gradient(to right, rgb(238, 238, 238), rgb(26, 17, 17));
-    border-radius: 5px;
-    width: 20rem;
+      background-color: $color-primary-light-1;
+      width: 20rem;
     }
   }
 
@@ -39,9 +37,11 @@
 
   &__tab {
     padding: 2rem;
+    background: $color-primary-light-3;
+    color: $color-primary-dark-1;
 
     &--active {
-      background: $color-primary-dark-2;
+      background: $color-primary-light-2;
       color: #fff
     }
   }
