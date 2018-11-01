@@ -58,9 +58,13 @@ export const renderShow = (show, header) => {
     </div>
 
     <div class="show__episodes">
-      <ul class="show__season-list">
+      <div class="show__season-box">
+        <button class="btn btn__slider btn__slider--prev"></button>
+        <ul class="show__season-list">
 
-      </ul>
+        </ul>
+        <button class="btn btn__slider btn__slider--next"></button>
+      </div>
       <div class="show__episodes-box">
 
       </div>

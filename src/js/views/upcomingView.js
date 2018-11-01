@@ -1,4 +1,5 @@
 import { elements, elementString } from './base';
+import { formatEpisodeNum } from '../helpers';
 
 const renderShow = (show) => {
   if (show.airdateInfo) {
@@ -6,7 +7,7 @@ const renderShow = (show) => {
     const markup =
       `<li class="upcoming-bar__item">
         <div class="upcoming-bar__info">
-          ${show.name} S0${show.airdateInfo.season}E0${show.airdateInfo.number}
+          ${show.name} S${formatEpisodeNum(show.airdateInfo.season)}E${formatEpisodeNum(show.airdateInfo.number)}
         </div>
         <div class="upcoming-bar__date">
           ${show.airdateInfo.airdate}

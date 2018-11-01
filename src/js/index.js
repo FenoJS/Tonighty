@@ -70,6 +70,7 @@ const controlShow = async() => {
 
       // Render show view and header
       showView.renderShow(state.show, state.show.name);
+      state.show.seasonsBarPostion = 0
     } catch (err) {
       console.log(err);
     }
@@ -109,6 +110,26 @@ elements.mainContent.addEventListener('click', (e) => {
     console.log(number);
     episodesView.renderEpisodes(state.show.episodes, parseInt(number, 10));
   }
+});
+
+// SEASONS BAR SLIDER
+
+
+elements.mainContent.addEventListener('click', (e) => {
+  const btnPrev = e.target.closest('.btn__slider--prev');
+  const btnNext = e.target.closest('.btn__slider--next');
+  const moveBy = document.querySelector('.show__season-item').offsetWidth
+  const seasonsBar = document.querySelector('.show__season-list')
+
+  if(btnPrev) {
+    state.show.seasonsBarPostion -= moveBy
+    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
+  }
+  if(btnNext) {
+    state.show.seasonsBarPostion += moveBy
+    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
+  }
+
 });
 
 

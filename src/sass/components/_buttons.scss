@@ -39,10 +39,45 @@
     padding: 2rem;
     background: $color-primary-light-3;
     color: $color-primary-dark-1;
+    height: 100%;
 
     &--active {
       background: $color-primary-light-2;
       color: #fff
+    }
+  }
+
+  &__slider {
+    z-index: 40;
+    width: 4rem;
+    position: relative;
+    background-color: #fff;
+
+    &--prev::before {
+      content: '';
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      top: 11px;
+      left: 14px;
+      top: 14px;
+      border-bottom: 4px solid #fec15e;
+      border-left: 4px solid #fec15e;
+      transform: rotate(45deg);
+      z-index: 50;
+    }
+    &--next::after {
+      content: '';
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      top: 11px;
+      right: 14px;
+      top: 14px;
+      border-top: 4px solid #fec15e;
+      border-right: 4px solid #fec15e;
+      transform: rotate(45deg);
+      z-index: 50;
     }
   }
 

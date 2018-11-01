@@ -1,4 +1,5 @@
 import { elements, elementString } from './base';
+import { formatEpisodeNum } from '../helpers';
 
 const renderEpisode = (episode, season) => {
   if (episode.season === season) {
@@ -9,7 +10,7 @@ const renderEpisode = (episode, season) => {
         <img src="${episode.image ? episode.image.medium : ''}" alt="" class="episode__img"/>
       </div>
       <div class="episode__details">
-        <span class="episode__info">S0${episode.season}E0${episode.number} - ${episode.name}</span>
+        <span class="episode__info">S${formatEpisodeNum(episode.season)}E${formatEpisodeNum(episode.number)} - ${episode.name}</span>
         <span class="episode__airdate">Airdate: ${episode.airdate} ${episode.airtime} - x days ago/in x days</span>
       </div>
       <div className="episode__buttons">
