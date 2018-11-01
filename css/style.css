@@ -78,10 +78,40 @@ body {
   .btn__tab {
     padding: 2rem;
     background: #fec15e;
-    color: #26154f; }
+    color: #26154f;
+    height: 100%; }
     .btn__tab--active {
       background: #6441a4;
       color: #fff; }
+  .btn__slider {
+    z-index: 40;
+    width: 4rem;
+    position: relative;
+    background-color: #fff; }
+    .btn__slider--prev::before {
+      content: '';
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      top: 11px;
+      left: 14px;
+      top: 14px;
+      border-bottom: 4px solid #fec15e;
+      border-left: 4px solid #fec15e;
+      transform: rotate(45deg);
+      z-index: 50; }
+    .btn__slider--next::after {
+      content: '';
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      top: 11px;
+      right: 14px;
+      top: 14px;
+      border-top: 4px solid #fec15e;
+      border-right: 4px solid #fec15e;
+      transform: rotate(45deg);
+      z-index: 50; }
 
 .search-bar {
   display: flex;
@@ -139,19 +169,34 @@ body {
     .show__tabs-header {
       text-align: center;
       flex: 1; }
+  .show__season-box {
+    display: flex;
+    overflow: hidden;
+    background-color: #fff;
+    justify-content: space-between;
+    box-shadow: 0px 4px 5px 0px rgba(144, 144, 144, 0.29); }
   .show__season-list {
     display: flex;
     flex: 0 0 100%;
-    justify-content: space-around;
     align-items: center;
-    background-color: #fff; }
+    background-color: #fff;
+    max-width: 112rem;
+    transform: translateX(0rem); }
   .show__season-item {
     display: flex;
-    width: 100%;
+    width: 14rem;
+    background-color: #fff;
     padding: 1.5rem 5rem;
     justify-content: center;
     font-size: 1.4rem;
-    border: 1px solid #6441a4; }
+    position: relative; }
+    .show__season-item:hover::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      border-bottom: 2px solid #fec15e; }
   .show__episodes-box {
     display: flex;
     flex-wrap: wrap; }
