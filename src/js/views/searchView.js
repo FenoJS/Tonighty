@@ -15,7 +15,6 @@ function rednerLikedBtn(id, storage) {
   if (storage) {
     return storage.findIndex(e => e.id === id) !== -1;
   }
-
 }
 
 const renderShow = (show) => {
@@ -48,7 +47,7 @@ const renderShow = (show) => {
 };
 
 export const renderResult = (shows, header, max = 100) => {
-  console.log('render results')
+  console.log('render results');
   elements.contentHeading.textContent = header;
   shows.forEach((show, i) => {
     if (i < max) {

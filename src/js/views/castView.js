@@ -10,9 +10,9 @@ export const renderCast = (cast) => {
         <span class="cast__actor">(${cast.person.name})</span>
       </div>
     </div>
-  `
+  `;
   el.insertAdjacentHTML('beforeend', markup);
-}
+};
 
 export const renderCasts = (casts) => {
   casts.forEach(cast => renderCast(cast));

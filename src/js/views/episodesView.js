@@ -1,11 +1,10 @@
-import { elements, elementString } from './base';
+import { elementString } from './base';
 import { formatEpisodeNum } from '../helpers';
 
 const renderEpisode = (episode, season) => {
   if (episode.season === season) {
     const el = document.querySelector('.show__episodes-box');
-    const markup =
-    `<div class="episode">
+    const markup = `<div class="episode">
       <div class="episode__img-box">
         <img src="${episode.image ? episode.image.medium : ''}" alt="" class="episode__img"/>
       </div>
@@ -16,7 +15,7 @@ const renderEpisode = (episode, season) => {
       <div className="episode__buttons">
         <button class="btn btn__fav btn__fav--small">Watched</button>
       </div>
-    </div>`
+    </div>`;
     el.insertAdjacentHTML('beforeend', markup);
   }
 };

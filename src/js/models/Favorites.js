@@ -6,20 +6,20 @@ export default class Favorites {
   }
 
   isLiked(id) {
-    console.log(id, 'isliked')
+    console.log(id, 'isliked');
     return this.favorites.findIndex(e => e.id === id) !== -1;
   }
 
   static async getAirdate(show) {
     try {
       if (show._links && show._links.nextepisode) {
-        const airdate = await axios(show._links.nextepisode.href)
+        const airdate = await axios(show._links.nextepisode.href);
         show.airdateInfo = airdate.data;
         return show;
       }
       return show; // ///////////???????????????????????////
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 

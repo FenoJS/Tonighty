@@ -10,7 +10,7 @@ export default class Popular {
       const res = await axios('http://api.tvmaze.com/shows');
       this.populars = res.data;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 }

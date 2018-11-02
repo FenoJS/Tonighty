@@ -11,7 +11,7 @@ export let elements = {
 export const elementString = {
   upcomingBarList: 'upcoming-bar__list',
   episodesList: 'show__episodes-box',
-}
+};
 
 export const renderLoader = (parent) => {
   const loader = `
@@ -32,7 +32,7 @@ export const clearLoader = () => {
 };
 
 export const renderMainTemplate = () => {
-  console.log(document.querySelector('.upcomin-bar'))
+  console.log(document.querySelector('.upcomin-bar'));
   if (!elements.upcomingBar) {
     const markupForm = `
         <form class="search-bar search-bar--top" action="#">
@@ -43,8 +43,8 @@ export const renderMainTemplate = () => {
             </svg>
           </button>
         </form>
-      `
-      const markupMain = `
+      `;
+    const markupMain = `
         <div class="wrapper">
           <div class="upcoming-bar"></div>
           <h2 class="content__heading heading-tertiary">HEADER PLACEHOLDER</h2>
@@ -52,29 +52,25 @@ export const renderMainTemplate = () => {
             <div class="results__pagination"></div>
           </div>
         </div>
-      `
-      elements.mainContent.innerHTML = ''
-      //elements.searchForm.remove();
-      elements.headerBox.insertAdjacentHTML('afterend', markupForm);
-      elements.mainContent.insertAdjacentHTML('afterbegin', markupMain);
-      console.log('render template')
-      elements = {
-        headerBox: document.querySelector('.header__box'),
-        results: document.querySelector('.results'),
-        searchForm: document.querySelector('.search-bar'),
-        searchInput: document.querySelector('.search-bar__input'),
-        contentHeading: document.querySelector('.content__heading'),
-        upcomingBar: document.querySelector('.upcoming-bar'),
-        upcomingBarList: document.querySelector('.upcoming-bar__list'),
-        seasonsList: document.querySelector('.show__season-list'),
-        mainContent: document.querySelector('.content'),
-      }
-
+      `;
+    elements.mainContent.innerHTML = '';
+    // elements.searchForm.remove();
+    elements.headerBox.insertAdjacentHTML('afterend', markupForm);
+    elements.mainContent.insertAdjacentHTML('afterbegin', markupMain);
+    console.log('render template');
+    elements = {
+      headerBox: document.querySelector('.header__box'),
+      results: document.querySelector('.results'),
+      searchForm: document.querySelector('.search-bar'),
+      searchInput: document.querySelector('.search-bar__input'),
+      contentHeading: document.querySelector('.content__heading'),
+      upcomingBar: document.querySelector('.upcoming-bar'),
+      upcomingBarList: document.querySelector('.upcoming-bar__list'),
+      seasonsList: document.querySelector('.show__season-list'),
+      mainContent: document.querySelector('.content'),
+    };
   } else {
-    console.log('return')
+    console.log('return');
     return;
   }
-
-
-
-}
+};

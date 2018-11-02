@@ -9,7 +9,7 @@ import * as upcomingView from './views/upcomingView';
 import * as episodesView from './views/episodesView';
 
 
-import { elements, elementString, renderMainTemplate } from './views/base';
+import { elements, renderMainTemplate } from './views/base';
 import { getDateYYYYMMDD, toggleFavBtn } from './helpers';
 // GLOBAL STATE
 
@@ -18,12 +18,10 @@ const state = {};
 // SEARCH CONTROLLER
 
 
-
 const controlSearch = async() => {
   // Get query from view
   const query = searchView.getInput();
   if (query) {
-
     // Create new Search Object
     state.search = new Search(query);
 
@@ -34,11 +32,11 @@ const controlSearch = async() => {
     renderMainTemplate();
     searchView.clearInput();
     searchView.clearResults();
-    //searchView.toggleFavBtn(state.favorites.favorites)
+    // searchView.toggleFavBtn(state.favorites.favorites)
     try {
       // Search for results
       await state.search.getResult();
-      console.log(state)
+      console.log(state);
       // Render results and header
       searchView.renderResult(state.search.result, `Results for ${state.search.query}`);
     } catch (err) {
@@ -48,12 +46,10 @@ const controlSearch = async() => {
 };
 
 
-
-
 // SHOW CONTROLLER
 
 const controlShow = async() => {
-  console.log(state)
+  console.log(state);
   // Get show ID from url hash
   const id = window.location.hash.replace('#/show/', '');
 
@@ -70,36 +66,34 @@ const controlShow = async() => {
 
       // Render show view and header
       showView.renderShow(state.show, state.show.name);
-      state.show.seasonsBarPostion = 0
+      state.show.seasonsBarPostion = 0;
     } catch (err) {
       console.log(err);
     }
   }
-
 };
-//Toggle epsiodes and cast
+
+// Toggle epsiodes and cast
 elements.mainContent.addEventListener('click', (e) => {
   const castTab = e.target.closest('.show__tabs');
-  const cast = document.querySelector('.show__cast')
-  const episodes = document.querySelector('.show__episodes')
-  const header = document.querySelector('.show__tabs-header')
+  const cast = document.querySelector('.show__cast');
+  const episodes = document.querySelector('.show__episodes');
+  const header = document.querySelector('.show__tabs-header');
 
   if (castTab && e.target.classList.contains('show__tabs--cast')) {
-    header.innerText = ''
-    header.innerText = `${state.show.name} cast`
-    episodes.classList.add('hidden')
-    cast.classList.remove('hidden')
-
-
+    header.innerText = '';
+    header.innerText = `${state.show.name} cast`;
+    episodes.classList.add('hidden');
+    cast.classList.remove('hidden');
   }
+
   if (castTab && e.target.classList.contains('show__tabs--episodes')) {
-    header.innerText = ''
-    header.innerText = `${state.show.name} episodes`
-    cast.classList.add('hidden')
-    episodes.classList.remove('hidden')
+    header.innerText = '';
+    header.innerText = `${state.show.name} episodes`;
+    cast.classList.add('hidden');
+    episodes.classList.remove('hidden');
   }
-
-})
+});
 
 // SHOULD CHANGE TO DATA ATRIBUTE
 elements.mainContent.addEventListener('click', (e) => {
@@ -113,39 +107,35 @@ elements.mainContent.addEventListener('click', (e) => {
 });
 
 // SEASONS BAR SLIDER
-
-
 elements.mainContent.addEventListener('click', (e) => {
   const btnPrev = e.target.closest('.btn__slider--prev');
   const btnNext = e.target.closest('.btn__slider--next');
-  const moveBy = document.querySelector('.show__season-item').offsetWidth
-  const seasonsBar = document.querySelector('.show__season-list')
+  const moveBy = document.querySelector('.show__season-item').offsetWidth;
+  const seasonsBar = document.querySelector('.show__season-list');
+  const seasonsCount = seasonsBar.childNodes.length;
 
-  if(btnPrev) {
-    state.show.seasonsBarPostion -= moveBy
+  if (btnPrev && state.show.seasonsBarPostion < 0) {
+    state.show.seasonsBarPostion += moveBy;
     seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
   }
-  if(btnNext) {
-    state.show.seasonsBarPostion += moveBy
+  if (btnNext && (((moveBy * seasonsCount) > seasonsBar.offsetWidth) && state.show.seasonsBarPostion > -Math.abs((moveBy * seasonsCount) - seasonsBar.offsetWidth))) {
+    state.show.seasonsBarPostion -= moveBy;
     seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
   }
-
 });
-
 
 // POPULAR CONTROLLER
 
 const controlPopular = async() => {
   // Fetch populars only if hasn't been already fetched
   if (!state.populars) {
-
     // Create new Popular object
     state.populars = new Popular();
 
     try {
       // Get data
       await state.populars.getPopular();
-      console.log('populars not in state')
+      console.log('populars not in state');
       // Prepare UI for results
       searchView.clearResults();
 
@@ -159,20 +149,12 @@ const controlPopular = async() => {
     searchView.clearResults();
     searchView.renderResult(state.populars.populars, 'Most popular shows', 40);
   }
-
-
 };
-
-// elements.popularLink.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   controlPopular();
-// });
-
 
 // FAVORITES CONTROLLER
 
 const controlFavorites = (id) => {
-  console.log(window.location.hash)
+  console.log(window.location.hash);
 
   if (id) {
     const parsedId = parseInt(id, 10);
@@ -202,12 +184,7 @@ const controlFavorites = (id) => {
     searchView.clearResults();
     searchView.renderResult(state.favorites.favorites, 'Your favorites shows:');
   }
-
-
-
-
-
-}
+};
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
 
@@ -246,64 +223,51 @@ const controlSchedule = async() => {
 
   try {
     await state.schedule.getSchedule(QueryDate);
+    console.log(state.schedule.schedule);
     searchView.clearResults();
     searchView.renderResult(state.schedule.schedule, 'Upcoming Shows:');
-    console.log(state.schedule.schedule)
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-
-
-
-
-}
+};
   // UPCOMING BAR CONTROLLER
 
-  const controlUpcomingBar = () => {
-    upcomingView.clearUpcoming();
-    upcomingView.renderUpcoming(state.favorites.favorites)
-  }
-
+const controlUpcomingBar = () => {
+  upcomingView.clearUpcoming();
+  upcomingView.renderUpcoming(state.favorites.favorites);
+};
 
 
 // ROUTER
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
-  console.log(state)
+  console.log(state);
   const { hash } = window.location;
-  const showRe = /^#\/show\/\w*/
-  window.scrollTo(0,0);
+  const showRe = /^#\/show\/\w*/;
+  window.scrollTo(0, 0);
 
 
   if (hash !== '') {
     renderMainTemplate();
     controlUpcomingBar();
-
-
   }
-  elements.searchForm.addEventListener('submit', (e) => {
-    console.log('xxxx')
-    e.preventDefault();
+  elements.searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
     controlSearch();
   });
 
   switch (true) {
-    case ('#populars' === hash):
+    case (hash === '#populars'):
       controlPopular();
       break;
-    case ('#favorites' === hash):
+    case (hash === '#favorites'):
       controlFavorites();
       break;
-    case ('#schedule' === hash):
+    case (hash === '#schedule'):
       controlSchedule();
       break;
-    case (/^#\/show\/\w*/.test(hash)):
-      controlShow();;
+    case (showRe.test(hash)):
+      controlShow();
       break;
   }
-
 }));
-
-
-
-

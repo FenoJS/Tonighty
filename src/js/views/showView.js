@@ -1,4 +1,4 @@
-import { elements} from './base';
+import { elements } from './base';
 import { renderEpisodes } from './episodesView';
 import { renderCasts } from './castView';
 
@@ -6,7 +6,6 @@ function rednerLikedBtn(id, storage) {
   if (storage) {
     return storage.findIndex(e => e.id === id) !== -1;
   }
-
 }
 
 function renderSeasonsCount(episodes) {
@@ -17,7 +16,7 @@ function renderSeasonsCount(episodes) {
 
   for (let i = 0; i < seasonNumber; i++) {
     const markup = `<li class="show__season-item"><span>Season${i + 1}</span></li>`;
-    el.insertAdjacentHTML('beforeend', markup);
+    el.insertAdjacentHTML('afterbegin', markup);
   }
 }
 
@@ -56,17 +55,13 @@ export const renderShow = (show, header) => {
     <button class="show__tabs--cast btn btn__tab">Cast</button>
     <h3 class="show__tabs-header heading-tertiary">${show.name} episodes</h3>
     </div>
-
     <div class="show__episodes">
       <div class="show__season-box">
         <button class="btn btn__slider btn__slider--prev"></button>
-        <ul class="show__season-list">
-
-        </ul>
+        <ul class="show__season-list"></ul>
         <button class="btn btn__slider btn__slider--next"></button>
       </div>
       <div class="show__episodes-box">
-
       </div>
     </div>
 
