@@ -22,7 +22,7 @@ function renderSeasonsCount(episodes) {
 
 
 export const renderShow = (show, header) => {
-  const storage = JSON.parse(localStorage.getItem('favorites'));
+  const storage = JSON.parse(localStorage.getItem('favoriteShows'));
   const { id } = show;
 
   const buttonText = rednerLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
@@ -74,7 +74,9 @@ export const renderShow = (show, header) => {
   elements.contentHeading.textContent = `${header}`
   elements.results.insertAdjacentHTML('afterbegin', markup);
 
+  const lastSeason = show.episodes[show.episodes.length - 1].season;
+
   renderSeasonsCount(show.episodes);
-  renderEpisodes(show.episodes);
+  renderEpisodes(show.episodes, lastSeason);
   renderCasts(show.cast);
 };

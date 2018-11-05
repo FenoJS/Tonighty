@@ -11,15 +11,23 @@ export const getDateYYYYMMDD = () => {
 };
 
 
-export const toggleFavBtn = (e, toggleSelector) => {
-  console.log(e.target);
-  e.target.classList.toggle(toggleSelector);
+export const toggleFavBtn = (e, toggleClass) => {
+  e.target.classList.toggle(toggleClass);
 
-  if (e.target.innerText === 'Remove') {
-    e.target.innerText = 'Add to favorites';
-  } else {
-    e.target.innerText = 'Remove';
-  }
+  switch (true) {
+    case (e.target.innerText === 'Remove'):
+      e.target.innerText = 'Add to favorites';
+      break;
+    case (e.target.innerText === 'Add to favorites'):
+      e.target.innerText = 'Remove';
+      break;
+    case (e.target.innerText === 'Unwatched'):
+      e.target.innerText = 'Watched';
+      break;
+    case (e.target.innerText === 'Watched'):
+      e.target.innerText = 'Unwatched';
+      break;
+  };
 };
 
 export const formatEpisodeNum = (num) => {
@@ -28,19 +36,3 @@ export const formatEpisodeNum = (num) => {
   }
   return `${num}`;
 };
-
-export const seasonsBarSlider = (e) => {
-  const btnPrev = e.target.closest('.btn__slider--prev');
-  const btnNext = e.target.closest('.btn__slider--next');
-  const moveBy = document.querySelector('.show__season-item').offsetWidth;
-  const seasonsBar = document.querySelector('.show__season-list');
-
-  if (btnPrev) {
-    state.show.seasonsBarPostion += moveBy;
-    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
-  }
-  if (btnNext) {
-    state.show.seasonsBarPostion -= moveBy;
-    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
-  }
-}

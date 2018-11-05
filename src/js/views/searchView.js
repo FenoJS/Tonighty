@@ -18,7 +18,7 @@ function rednerLikedBtn(id, storage) {
 }
 
 const renderShow = (show) => {
-  const storage = JSON.parse(localStorage.getItem('favorites'));
+  const storage = JSON.parse(localStorage.getItem('favoriteShows'));
   const { id } = show;
 
   const buttonText = rednerLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';

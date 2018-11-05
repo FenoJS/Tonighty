@@ -32,7 +32,7 @@ const controlSearch = async() => {
     renderMainTemplate();
     searchView.clearInput();
     searchView.clearResults();
-    // searchView.toggleFavBtn(state.favorites.favorites)
+    // searchView.toggleFavBtn(state.favorites.favoriteShows)
     try {
       // Search for results
       await state.search.getResult();
@@ -152,47 +152,73 @@ const controlPopular = async() => {
 };
 
 // FAVORITES CONTROLLER
+// function isLiked(id) {
+//   console.log(id, 'isliked');
+//   console.log(state.favorites.favoriteEpisodes.findIndex(e => e === id) !== -1)
+//   return state.favorites.favoriteEpisodes.findIndex(e => e === id) !== -1;
+// }
 
-const controlFavorites = (id) => {
+const controlFavorites = (id, type, flag) => {
+  const parsedId = parseInt(id, 10);
   console.log(window.location.hash);
+  console.log(id)
 
-  if (id) {
-    const parsedId = parseInt(id, 10);
+  // Create new favorites object
+  if (!state.favorites) state.favorites = new Favorites();
 
-    // Create new favorites object
-    if (!state.favorites) state.favorites = new Favorites();
-
+  if (id && type === 'show') {
     // Check if show is already liked and depend of result add it or remove from Favorites
-    if (!state.favorites.isLiked(parsedId)) {
+    if (!state.favorites.isLiked(parsedId, type)) {
       if ((state.search && window.location.hash === '#search')) {
         const showIndex = state.search.result.findIndex(e => e.id === parsedId);
-        state.favorites.addFavorite(state.search.result[showIndex]);
+        state.favorites.addFavorite(state.search.result[showIndex], type);
       }
       if ((state.populars && window.location.hash === '#populars')) {
         const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
-        state.favorites.addFavorite(state.populars.populars[showIndex]);
+        state.favorites.addFavorite(state.populars.populars[showIndex], type);
       }
       if ((state.show && window.location.hash === `#/show/${id}`)) {
-        state.favorites.addFavorite(state.show);
+        state.favorites.addFavorite(state.show, type);
       }
     } else {
-      state.favorites.deleteFavorite(parsedId);
+      state.favorites.deleteFavorite(parsedId, type);
     }
+  }
+
+  if (id && type === 'episode') {
+    if (!Array.isArray(id)) {
+      if (!state.favorites.isLiked(parsedId, type)) {
+        state.favorites.addFavorite(parsedId, type);
+      } else {
+        state.favorites.deleteFavorite(parsedId, type);
+      }
+    }
+
+    if (Array.isArray(id)) {
+      const filteredIDs = id.filter(i => !state.favorites.isLiked(i, type));
+      state.favorites.addFavorite(filteredIDs, type)
+    }
+    if (flag === 'remove') {
+      state.favorites.deleteFavorite(id, type);
+    }
+
   }
 
   if (window.location.hash === '#favorites') {
     searchView.clearResults();
-    searchView.renderResult(state.favorites.favorites, 'Your favorites shows:');
+    searchView.renderResult(state.favorites.favoriteShows, 'Your favorites shows:');
   }
+
+
 };
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
 
   if (btn) {
     e.preventDefault();
-    const id = btn.parentNode.querySelector('.results-item__link').getAttribute('href').replace('#/show/', ''); // Need to add better selector
+    const id = btn.parentNode.querySelector('.results-item__link').getAttribute('href').replace('#/show/', '');
     toggleFavBtn(e, 'btn__fav--small2');
-    controlFavorites(id);
+    controlFavorites(id, 'show');
   }
 });
 // need to think about better logic because of doubled class inisde fav buttons
@@ -203,9 +229,53 @@ elements.mainContent.addEventListener('click', (e) => {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
     toggleFavBtn(e, 'btn__fav--big2');
-    controlFavorites(id);
+    controlFavorites(id, 'show');
   }
 });
+
+elements.mainContent.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn__fav--watched', '.btn__fav--watched *');
+
+  if (btn) {
+    e.preventDefault();
+    const id = e.target.dataset.episodeId;
+    toggleFavBtn(e, 'btn__fav--watched2');
+    controlFavorites(id, 'episode');
+  }
+});
+
+
+elements.mainContent.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
+
+  if (btn) {
+    const allElements = document.querySelectorAll('[data-episode-id]');
+    e.preventDefault();
+    for (let i = 0; i < allElements.length; i++) {
+      allElements[i].classList.add('btn__fav--watched2');
+      allElements[i].innerText = 'Watched';
+    }
+    const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
+    controlFavorites(allIDs, 'episode');
+  }
+})
+
+elements.mainContent.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
+
+  if (btn) {
+    const allElements = document.querySelectorAll('[data-episode-id]');
+    e.preventDefault();
+    for (let i = 0; i < allElements.length; i++) {
+      allElements[i].classList.remove('btn__fav--watched2');
+      allElements[i].innerText = 'Unwatched';
+    }
+    const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
+    controlFavorites(allIDs, 'episode', 'remove');
+    //state.favorites.favoriteEpisodes = state.favorites.favoriteEpisodes.filter(i => allIDs.indexOf(i) === -1);
+
+  }
+})
 
 
 window.addEventListener('load', () => {
@@ -234,7 +304,7 @@ const controlSchedule = async() => {
 
 const controlUpcomingBar = () => {
   upcomingView.clearUpcoming();
-  upcomingView.renderUpcoming(state.favorites.favorites);
+  upcomingView.renderUpcoming(state.favorites.favoriteShows);
 };
 
 
