@@ -72,6 +72,10 @@ body {
     .btn__fav--big2 {
       background-color: #ff5759;
       width: 20rem; }
+    .btn__fav--watched {
+      background-color: #6441a4; }
+    .btn__fav--watched2 {
+      background-color: #ff5759; }
   .btn__info {
     background-color: transparent;
     margin-bottom: 1rem; }
