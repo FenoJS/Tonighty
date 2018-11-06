@@ -158,7 +158,7 @@ const controlPopular = async() => {
 //   return state.favorites.favoriteEpisodes.findIndex(e => e === id) !== -1;
 // }
 
-const controlFavorites = (id, type, flag) => {
+const controlFavorites = (id, type, action) => {
   const parsedId = parseInt(id, 10);
   console.log(window.location.hash);
   console.log(id)
@@ -198,7 +198,7 @@ const controlFavorites = (id, type, flag) => {
       const filteredIDs = id.filter(i => !state.favorites.isLiked(i, type));
       state.favorites.addFavorite(filteredIDs, type)
     }
-    if (flag === 'remove') {
+    if (action === 'remove') {
       state.favorites.deleteFavorite(id, type);
     }
 

@@ -41,7 +41,7 @@ export default class Favorites {
     }
 
     // Persist data in localStorage
-    //this.persistData();
+    this.persistData(type);
   }
 
   deleteFavorite(id, type) {
@@ -62,17 +62,25 @@ export default class Favorites {
     }
 
     // Persist data in localStorage
-    //this.persistData();
+    this.persistData(type);
   }
 
-  persistData() {
-    localStorage.setItem('favoriteShows', JSON.stringify(this.favoriteShows));
+  persistData(type) {
+    if (type === 'show') {
+      localStorage.setItem('favoriteShows', JSON.stringify(this.favoriteShows));
+    }
+    if (type === 'episode') {
+      localStorage.setItem('favoriteEpisodes', JSON.stringify(this.favoriteEpisodes));
+    }
   }
+
 
   readStorage() {
-    const storage = JSON.parse(localStorage.getItem('favoriteShows'));
+    const storageShows = JSON.parse(localStorage.getItem('favoriteShows'));
+    const storageEpisodes = JSON.parse(localStorage.getItem('favoriteEpisodes'));
 
     // Restore likes from the localStorage
-    if (storage) this.favoriteShows = storage;
+    if (storageShows) this.favoriteShows = storageShows;
+    if (storageEpisodes) this.favoriteEpisodes = storageEpisodes;
   }
 }
