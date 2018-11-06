@@ -11,17 +11,15 @@ export const clearResults = () => {
 };
 
 
-function rednerLikedBtn(id, storage) {
+function renderLikedBtn(id, storage) {
   if (storage) {
     return storage.findIndex(e => e.id === id) !== -1;
   }
 }
 
-const renderShow = (show) => {
-  const storage = JSON.parse(localStorage.getItem('favoriteShows'));
+const renderShow = (show, storage) => {
   const { id } = show;
-
-  const buttonText = rednerLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
+  const buttonText = renderLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
 
 
   // need to add placeholders for non-existing props
@@ -39,7 +37,7 @@ const renderShow = (show) => {
       </a>
       <h3 class="results-item__name">${show.name}</h3>
       <p class="results-item__network">${show.network ? show.network.name : ''}</p>
-      <button class="btn btn__fav ${rednerLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">${buttonText}</button>
+      <button class="btn btn__fav ${renderLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">${buttonText}</button>
     </div>
   `;
 
@@ -47,11 +45,12 @@ const renderShow = (show) => {
 };
 
 export const renderResult = (shows, header, max = 100) => {
+  const storage = JSON.parse(localStorage.getItem('favoriteShows'));
   console.log('render results');
   elements.contentHeading.textContent = header;
   shows.forEach((show, i) => {
     if (i < max) {
-      renderShow(show);
+      renderShow(show, storage);
     }
   });
 };
