@@ -304,7 +304,14 @@ const controlSchedule = async() => {
 
 const controlUpcomingBar = () => {
   upcomingView.clearUpcoming();
-  upcomingView.renderUpcoming(state.favorites.favoriteShows);
+
+  const sortedByAirdate = state.favorites.favoriteShows.sort((a, b) => {
+    const aa = a.airdateInfo ? new Date(a.airdateInfo.airdate).getTime() : 0;
+    const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 0;
+    return aa - bb;
+  });
+
+  upcomingView.renderUpcoming(sortedByAirdate);
 };
 
 
