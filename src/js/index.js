@@ -245,37 +245,61 @@ elements.mainContent.addEventListener('click', (e) => {
 });
 
 
-elements.mainContent.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
+// elements.mainContent.addEventListener('click', (e) => {
+//   const btn = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
 
-  if (btn) {
-    const allElements = document.querySelectorAll('[data-episode-id]');
+//   if (btn) {
+//     const allElements = document.querySelectorAll('[data-episode-id]');
+//     e.preventDefault();
+//     for (let i = 0; i < allElements.length; i++) {
+//       allElements[i].classList.add('btn__fav--watched2');
+//       allElements[i].innerText = 'Watched';
+//     }
+//     const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
+//     controlFavorites(allIDs, 'episode');
+//   }
+// })
+
+// elements.mainContent.addEventListener('click', (e) => {
+//   const btn = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
+
+//   if (btn) {
+//     const allElements = document.querySelectorAll('[data-episode-id]');
+//     e.preventDefault();
+//     for (let i = 0; i < allElements.length; i++) {
+//       allElements[i].classList.remove('btn__fav--watched2');
+//       allElements[i].innerText = 'Unwatched';
+//     }
+//     const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
+//     controlFavorites(allIDs, 'episode', 'remove');
+//   }
+// });
+
+elements.mainContent.addEventListener('click', (e) => {
+  const btnWatch = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
+  const btnUnwatch = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
+  const allElements = document.querySelectorAll('[data-episode-id]');
+  const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
+  
+
+  if (btnWatch) {
     e.preventDefault();
     for (let i = 0; i < allElements.length; i++) {
       allElements[i].classList.add('btn__fav--watched2');
       allElements[i].innerText = 'Watched';
     }
-    const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
     controlFavorites(allIDs, 'episode');
   }
-})
 
-elements.mainContent.addEventListener('click', (e) => {
-  const btn = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
-
-  if (btn) {
-    const allElements = document.querySelectorAll('[data-episode-id]');
+  if (btnUnwatch) {
     e.preventDefault();
     for (let i = 0; i < allElements.length; i++) {
       allElements[i].classList.remove('btn__fav--watched2');
       allElements[i].innerText = 'Unwatched';
     }
-    const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
     controlFavorites(allIDs, 'episode', 'remove');
-    //state.favorites.favoriteEpisodes = state.favorites.favoriteEpisodes.filter(i => allIDs.indexOf(i) === -1);
-
   }
-})
+});
 
 
 window.addEventListener('load', () => {
