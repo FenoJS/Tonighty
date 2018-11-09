@@ -61,17 +61,17 @@ body {
     color: #fff;
     padding: 1rem; }
     .btn__fav--small {
-      width: 100%;
+      width: 21rem;
       background-color: #6441a4;
       margin-top: 5px; }
     .btn__fav--small2 {
       background-color: #ff5759; }
     .btn__fav--big {
       background-color: #6441a4;
-      width: 20rem; }
+      width: 15rem; }
     .btn__fav--big2 {
       background-color: #ff5759;
-      width: 20rem; }
+      width: 15rem; }
     .btn__fav--watched {
       background-color: #6441a4; }
     .btn__fav--watched2 {
@@ -306,6 +306,46 @@ body {
     text-align: center; }
   .cast__character {
     font-size: 1.5rem; }
+
+.schedule-item {
+  display: flex;
+  flex: 10 0 39rem;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0.5rem 0 0.5rem;
+  background-color: #fff;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(42, 38, 54, 0.29);
+  justify-content: space-between;
+  color: #26154f; }
+  .schedule-item__link {
+    position: relative; }
+  .schedule-item__img {
+    width: 100%;
+    display: block; }
+  .schedule-item__name {
+    font-size: 1.6rem;
+    text-align: center; }
+  .schedule-item__network {
+    font-size: 2rem;
+    text-align: center; }
+  .schedule-item__back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%; }
+    .schedule-item__back:hover {
+      opacity: 1; }
+  .schedule-item__icon {
+    width: 12rem;
+    height: 12rem;
+    fill: #fff; }
 
 .header {
   display: flex;

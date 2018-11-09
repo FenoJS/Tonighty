@@ -52,7 +52,7 @@ export default class Favorites {
     if (type === 'episode') {
       if (Array.isArray(id)) {
         id.map((i) => {
-          let index = this.favoriteEpisodes.indexOf(i);
+          const index = this.favoriteEpisodes.indexOf(i);
           return this.favoriteEpisodes.splice(index, 1);
         });
       } else {

@@ -37,7 +37,7 @@ const renderShow = (show, storage) => {
       </a>
       <h3 class="results-item__name">${show.name}</h3>
       <p class="results-item__network">${show.network ? show.network.name : ''}</p>
-      <button class="btn btn__fav ${renderLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}">${buttonText}</button>
+      <button class="btn btn__fav ${renderLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}" data-show-id=${show.id}>${buttonText}</button>
     </div>
   `;
 

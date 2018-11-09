@@ -1,0 +1,55 @@
+.schedule-item {
+  display: flex;
+  flex: 10 0 39rem;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0.5rem 0 0.5rem;
+  background-color: #fff;
+  position: relative;
+  box-shadow: $shadow-light;
+  justify-content: space-between;
+  color: $color-primary-dark-1;
+
+  &__link {
+    position: relative;
+  }
+
+
+  &__img {
+    width: 100%;
+    display: block;
+  }
+
+  &__name {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  &__network {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__icon {
+    width: 12rem;
+    height: 12rem;
+    fill: #fff
+  }
+}

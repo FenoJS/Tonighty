@@ -5,7 +5,8 @@ import Favorites from './models/Favorites';
 import Schedule from './models/Schedule';
 import * as searchView from './views/searchView';
 import * as showView from './views/showView';
-import * as upcomingView from './views/upcomingView';
+import * as scheduleView from './views/scheduleView';
+import * as upcomingBarView from './views/upcomingBarView';
 import * as episodesView from './views/episodesView';
 
 
@@ -110,18 +111,23 @@ elements.mainContent.addEventListener('click', (e) => {
 elements.mainContent.addEventListener('click', (e) => {
   const btnPrev = e.target.closest('.btn__slider--prev');
   const btnNext = e.target.closest('.btn__slider--next');
-  const moveBy = document.querySelector('.show__season-item').offsetWidth;
   const seasonsBar = document.querySelector('.show__season-list');
-  const seasonsCount = seasonsBar.childNodes.length;
 
-  if (btnPrev && state.show.seasonsBarPostion < 0) {
-    state.show.seasonsBarPostion += moveBy;
-    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
+  if (seasonsBar) {
+    const moveBy = document.querySelector('.show__season-item').offsetWidth;
+    const seasonsCount = seasonsBar.childNodes.length;
+
+    if (btnPrev && state.show.seasonsBarPostion < 0) {
+      state.show.seasonsBarPostion += moveBy;
+      seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
+    }
+    if (btnNext && (((moveBy * seasonsCount) > seasonsBar.offsetWidth) && state.show.seasonsBarPostion > -Math.abs((moveBy * seasonsCount) - seasonsBar.offsetWidth))) {
+      state.show.seasonsBarPostion -= moveBy;
+      seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
+    }
   }
-  if (btnNext && (((moveBy * seasonsCount) > seasonsBar.offsetWidth) && state.show.seasonsBarPostion > -Math.abs((moveBy * seasonsCount) - seasonsBar.offsetWidth))) {
-    state.show.seasonsBarPostion -= moveBy;
-    seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
-  }
+
+
 });
 
 // POPULAR CONTROLLER
@@ -161,7 +167,6 @@ const controlPopular = async() => {
 const controlFavorites = (id, type, action) => {
   const parsedId = parseInt(id, 10);
   console.log(window.location.hash);
-  console.log(id)
 
   // Create new favorites object
   if (!state.favorites) state.favorites = new Favorites();
@@ -176,6 +181,11 @@ const controlFavorites = (id, type, action) => {
       if ((state.populars && window.location.hash === '#populars')) {
         const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.populars.populars[showIndex], type);
+      }
+      if ((state.schedule && window.location.hash === '#schedule')) {
+        const showIndex = state.schedule.schedule.findIndex(e => e.id === parsedId);
+        console.log(showIndex)
+        state.favorites.addFavorite(state.schedule.schedule[showIndex], type);
       }
       if ((state.show && window.location.hash === `#/show/${id}`)) {
         state.favorites.addFavorite(state.show, type);
@@ -213,15 +223,14 @@ const controlFavorites = (id, type, action) => {
 };
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
-
   if (btn) {
     e.preventDefault();
-    const id = btn.parentNode.querySelector('.results-item__link').getAttribute('href').replace('#/show/', '');
+    const id = btn.dataset.showId;
     toggleFavBtn(e, 'btn__fav--small2');
     controlFavorites(id, 'show');
   }
 });
-// need to think about better logic because of doubled class inisde fav buttons
+
 elements.mainContent.addEventListener('click', (e) => {
   const btn = document.querySelector('.btn__fav--big');
 
@@ -245,42 +254,12 @@ elements.mainContent.addEventListener('click', (e) => {
 });
 
 
-// elements.mainContent.addEventListener('click', (e) => {
-//   const btn = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
-
-//   if (btn) {
-//     const allElements = document.querySelectorAll('[data-episode-id]');
-//     e.preventDefault();
-//     for (let i = 0; i < allElements.length; i++) {
-//       allElements[i].classList.add('btn__fav--watched2');
-//       allElements[i].innerText = 'Watched';
-//     }
-//     const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
-//     controlFavorites(allIDs, 'episode');
-//   }
-// })
-
-// elements.mainContent.addEventListener('click', (e) => {
-//   const btn = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
-
-//   if (btn) {
-//     const allElements = document.querySelectorAll('[data-episode-id]');
-//     e.preventDefault();
-//     for (let i = 0; i < allElements.length; i++) {
-//       allElements[i].classList.remove('btn__fav--watched2');
-//       allElements[i].innerText = 'Unwatched';
-//     }
-//     const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
-//     controlFavorites(allIDs, 'episode', 'remove');
-//   }
-// });
-
 elements.mainContent.addEventListener('click', (e) => {
   const btnWatch = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
   const btnUnwatch = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
   const allElements = document.querySelectorAll('[data-episode-id]');
   const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
-  
+
 
   if (btnWatch) {
     e.preventDefault();
@@ -317,9 +296,21 @@ const controlSchedule = async() => {
 
   try {
     await state.schedule.getSchedule(QueryDate);
-    console.log(state.schedule.schedule);
-    searchView.clearResults();
-    searchView.renderResult(state.schedule.schedule, 'Upcoming Shows:');
+    const upcomingFav = state.favorites.favoriteShows;
+    const upcomingSchedule = state.schedule.schedule;
+
+    // Filter and remove duplicates before concat for perfromance http://jsben.ch/SnWS4
+    const filteredAndMarged = upcomingSchedule.concat(upcomingFav.filter(i => upcomingSchedule.findIndex(e => e.id === i.id) === -1));
+    const filteredWithAirdate = filteredAndMarged.filter(i => i.airdateInfo);
+
+    const sortedByAirdate = filteredWithAirdate.sort((a, b) => {
+      const aa = a.airdateInfo ? new Date(a.airdateInfo.airdate).getTime() : 1;
+      const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 1;
+      return aa - bb;
+    });
+
+    scheduleView.clearResults();
+    scheduleView.renderResult(sortedByAirdate, 'Upcoming Shows:');
   } catch (err) {
     console.log(err);
   }
@@ -327,15 +318,15 @@ const controlSchedule = async() => {
   // UPCOMING BAR CONTROLLER
 
 const controlUpcomingBar = () => {
-  upcomingView.clearUpcoming();
+  upcomingBarView.clearUpcoming();
 
-  const sortedByAirdate = state.favorites.favoriteShows.sort((a, b) => {
+  const sortedByAirdate = state.favorites.favoriteShows.slice(0).sort((a, b) => {
     const aa = a.airdateInfo ? new Date(a.airdateInfo.airdate).getTime() : 0;
     const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 0;
     return aa - bb;
   });
 
-  upcomingView.renderUpcoming(sortedByAirdate);
+  upcomingBarView.renderUpcoming(sortedByAirdate);
 };
 
 
