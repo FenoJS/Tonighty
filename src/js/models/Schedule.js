@@ -9,8 +9,9 @@ export default class Schedule {
     try {
       const res = await axios(`http://api.tvmaze.com/schedule?country=US&date=${date}`);
       console.log(res.data);
-      // Get only TV Series and Get rid of talk-shows(90% of api respond)
+
       res.data.map((item) => {
+        // Get only TV Series without talk-shows etc.(90% of api respond)
         if (item.show.type === 'Scripted') {
           item.show.airdateInfo = {
             airdate: item.airdate,

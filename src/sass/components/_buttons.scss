@@ -8,7 +8,7 @@
     padding: 1rem;
 
     &--small {
-      width: 21rem;
+      width: 23rem;
       background-color: $color-primary-light-2;
       margin-top: 5px;
     }
@@ -61,7 +61,7 @@
     position: relative;
     background-color: #fff;
 
-    &--prev::before {
+    &-show--prev::before, &-bar--prev::before {
       content: '';
       position: absolute;
       width: 2rem;
@@ -74,7 +74,7 @@
       transform: rotate(45deg);
       z-index: 50;
     }
-    &--next::after {
+    &-show--next::after, &-bar--next::after {
       content: '';
       position: absolute;
       width: 2rem;

@@ -14,7 +14,7 @@ function renderLikedBtn(id, storage) {
 
 const renderEpisode = (episode, season, storage) => {
   if (episode.season === season) {
-    const relativeAirdate = episode.airdate ? dayjs().to(dayjs(episode.airdate)) : '';
+    const relativeAirdate = episode.airstamp ? dayjs().to(dayjs(episode.airstamp)) : '';
     const { id } = episode;
     const buttonText = renderLikedBtn(id, storage) ? 'Watched' : 'Unwatched';
     const el = document.querySelector('.show__episodes-box');

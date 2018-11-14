@@ -109,8 +109,8 @@ elements.mainContent.addEventListener('click', (e) => {
 
 // SEASONS BAR SLIDER
 elements.mainContent.addEventListener('click', (e) => {
-  const btnPrev = e.target.closest('.btn__slider--prev');
-  const btnNext = e.target.closest('.btn__slider--next');
+  const btnPrev = e.target.closest('.btn__slider-show--prev');
+  const btnNext = e.target.closest('.btn__slider-show--next');
   const seasonsBar = document.querySelector('.show__season-list');
 
   if (seasonsBar) {
@@ -126,8 +126,6 @@ elements.mainContent.addEventListener('click', (e) => {
       seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
     }
   }
-
-
 });
 
 // POPULAR CONTROLLER
@@ -223,6 +221,7 @@ const controlFavorites = (id, type, action) => {
 };
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
+  console.log(e.target)
   if (btn) {
     e.preventDefault();
     const id = btn.dataset.showId;
@@ -284,6 +283,7 @@ elements.mainContent.addEventListener('click', (e) => {
 window.addEventListener('load', () => {
   state.favorites = new Favorites();
   state.favorites.readStorage();
+  state.favorites.refreshShowsAirdate();
 });
 
 
@@ -300,7 +300,7 @@ const controlSchedule = async() => {
     const upcomingSchedule = state.schedule.schedule;
 
     // Filter and remove duplicates before concat for perfromance http://jsben.ch/SnWS4
-    const filteredAndMarged = upcomingSchedule.concat(upcomingFav.filter(i => upcomingSchedule.findIndex(e => e.id === i.id) === -1));
+    const filteredAndMarged = upcomingFav.concat(upcomingSchedule.filter(i => upcomingFav.findIndex(e => e.id === i.id) === -1));
     const filteredWithAirdate = filteredAndMarged.filter(i => i.airdateInfo);
 
     const sortedByAirdate = filteredWithAirdate.sort((a, b) => {
@@ -325,6 +325,28 @@ const controlUpcomingBar = () => {
     const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 0;
     return aa - bb;
   });
+
+  // UPCOMING BAR SLIDER
+  elements.mainContent.addEventListener('click', (e) => {
+    const btnPrev = e.target.closest('.btn__slider-bar--prev');
+    const btnNext = e.target.closest('.btn__slider-bar--next');
+    const upcomingBar = document.querySelector('.upcoming-bar__list');
+
+    if (upcomingBar) {
+      const moveBy = document.querySelector('.upcoming-bar__item').offsetWidth;
+      const upcomingCount = upcomingBar.childNodes.length;
+
+      if (btnPrev) {
+        //state.show.seasonsBarPostion += moveBy;
+        upcomingBar.style.transform = `translateX(${moveBy}px)`;
+      }
+      if (btnNext) {
+        //state.show.seasonsBarPostion -= moveBy;
+        upcomingBar.style.transform = `translateX(${moveBy}px)`;
+      }
+    }
+  });
+
 
   upcomingBarView.renderUpcoming(sortedByAirdate);
 };

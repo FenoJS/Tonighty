@@ -2,13 +2,11 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  align-items: center;
-  padding: 1rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   max-width: 23rem;
-  box-shadow: $shadow-light;
+  box-shadow: $shadow-light2;
   justify-content: space-between;
   color: $color-primary-dark-1;
 
@@ -25,6 +23,7 @@
   &__name {
     font-size: 1.6rem;
     text-align: center;
+    margin-top: 0.5rem;
   }
 
   &__network {

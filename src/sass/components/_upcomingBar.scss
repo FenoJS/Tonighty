@@ -1,21 +1,40 @@
 .upcoming-bar {
-  width: 100%;
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
   color: $color-primary-dark-1;
 
   &__header {
+    display: block;
+    width: 100%;
     text-transform: uppercase;
     text-align: center;
+    padding: 0.5rem 0;
   }
 
   &__list {
     display: flex;
-    width: 100%;
+    flex: 0 0 100%;
+    max-width: 112rem;
     list-style: none;
+    animation: topSliderMove 20s infinite;
+
   }
 
   &__item {
-    flex: 0 0 33%;
+    flex: 0 0 29rem;
     font-size: 1.5rem;
   }
+
+  &__info, &__date {
+    text-align: center;
+  }
+
+}
+
+@keyframes topSliderMove {
+  0%   {transform: translateX(0px)}
+  100% {transform: translateX(-1200px)}
 }
 

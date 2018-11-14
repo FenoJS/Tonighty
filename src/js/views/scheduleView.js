@@ -1,10 +1,13 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 import { elements } from './base';
 
+dayjs.extend(relativeTime);
 
 export const clearResults = () => {
   elements.results.innerHTML = '';
 };
-
 
 function renderLikedBtn(id, storage) {
   if (storage) {
@@ -34,8 +37,9 @@ const renderShow = (show, storage) => {
       </div>
       <div class="schedule-item__details-box">
         <h3 class="schedule-item__name">${show.name}</h3>
-        <p>${show.airdateInfo.airdate}</p>
-        <p>${show.airdateInfo.name}</p>
+        <p class="schedule-item__episode-name">${show.airdateInfo.name}</p>
+        <p class="schedule-item__airdate">Airdate ${show.airdateInfo.airdate}</p>
+        <p class="schedule-item__relative">${dayjs().to(dayjs(show.airdateInfo.airstamp))}</p>
         <button class="btn btn__fav ${renderLikedBtn(id, storage) ? 'btn__fav--small btn__fav--small2' : 'btn__fav--small'}" data-show-id=${show.id}>${buttonText}</button>
       </div>
     </div>

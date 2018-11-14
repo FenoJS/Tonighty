@@ -1,14 +1,24 @@
 .schedule-item {
   display: flex;
-  flex: 10 0 39rem;
-  align-items: center;
-  padding: 1rem;
+  flex: 0 0 39rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   box-shadow: $shadow-light;
   justify-content: space-between;
   color: $color-primary-dark-1;
+
+  &__img-box {
+    position: relative;
+    display: flex;
+  }
+
+  &__details-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &__link {
     position: relative;
@@ -19,6 +29,19 @@
     width: 100%;
     display: block;
   }
+
+  &__episode-name {
+    font-size: 1.5rem;
+  }
+
+  &__airdate {
+    font-size: 1.5rem;
+  }
+
+  &__relative {
+
+  }
+
 
   &__name {
     font-size: 1.6rem;

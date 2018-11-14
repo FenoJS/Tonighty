@@ -29,7 +29,7 @@ function renderSeasonsCount(episodes) {
 export const renderShow = (show, header) => {
   const storage = JSON.parse(localStorage.getItem('favoriteShows'));
   const { id } = show;
-  const relativeAirdate = show.airdateInfo ? dayjs().to(dayjs(show.airdateInfo.airdate)) : 'No info';
+  const relativeAirdate = show.airdateInfo ? dayjs().to(dayjs(show.airdateInfo.airstamp)) : 'No info';
   const buttonText = renderLikedBtn(id, storage) ? 'Remove' : 'Add to favorites';
 
   const markup = `
@@ -62,9 +62,9 @@ export const renderShow = (show, header) => {
     </div>
     <div class="show__episodes">
       <div class="show__season-box">
-        <button class="btn btn__slider btn__slider--prev"></button>
+        <button class="btn btn__slider btn__slider-show--prev"></button>
         <ul class="show__season-list"></ul>
-        <button class="btn btn__slider btn__slider--next"></button>
+        <button class="btn btn__slider btn__slider-show--next"></button>
       </div>
       <div class="show__episodes-box">
       </div>
