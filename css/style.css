@@ -61,7 +61,7 @@ body {
     color: #fff;
     padding: 1rem; }
     .btn__fav--small {
-      width: 21rem;
+      width: 23rem;
       background-color: #6441a4;
       margin-top: 5px; }
     .btn__fav--small2 {
@@ -92,7 +92,7 @@ body {
     width: 4rem;
     position: relative;
     background-color: #fff; }
-    .btn__slider--prev::before {
+    .btn__slider-show--prev::before, .btn__slider-bar--prev::before {
       content: '';
       position: absolute;
       width: 2rem;
@@ -104,7 +104,7 @@ body {
       border-left: 4px solid #fec15e;
       transform: rotate(45deg);
       z-index: 50; }
-    .btn__slider--next::after {
+    .btn__slider-show--next::after, .btn__slider-bar--next::after {
       content: '';
       position: absolute;
       width: 2rem;
@@ -216,13 +216,11 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  align-items: center;
-  padding: 1rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   max-width: 23rem;
-  box-shadow: 0 2px 5px rgba(42, 38, 54, 0.29);
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.51);
   justify-content: space-between;
   color: #26154f; }
   .results-item__link {
@@ -232,7 +230,8 @@ body {
     display: block; }
   .results-item__name {
     font-size: 1.6rem;
-    text-align: center; }
+    text-align: center;
+    margin-top: 0.5rem; }
   .results-item__network {
     font-size: 2rem;
     text-align: center; }
@@ -255,18 +254,34 @@ body {
     fill: #fff; }
 
 .upcoming-bar {
-  width: 100%;
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
   color: #26154f; }
   .upcoming-bar__header {
+    display: block;
+    width: 100%;
     text-transform: uppercase;
-    text-align: center; }
+    text-align: center;
+    padding: 0.5rem 0; }
   .upcoming-bar__list {
     display: flex;
-    width: 100%;
-    list-style: none; }
+    flex: 0 0 100%;
+    max-width: 112rem;
+    list-style: none;
+    animation: topSliderMove 20s infinite; }
   .upcoming-bar__item {
-    flex: 0 0 33%;
+    flex: 0 0 29rem;
     font-size: 1.5rem; }
+  .upcoming-bar__info, .upcoming-bar__date {
+    text-align: center; }
+
+@keyframes topSliderMove {
+  0% {
+    transform: translateX(0px); }
+  100% {
+    transform: translateX(-1200px); } }
 
 .episode {
   display: flex;
@@ -309,20 +324,30 @@ body {
 
 .schedule-item {
   display: flex;
-  flex: 10 0 39rem;
-  align-items: center;
-  padding: 1rem;
+  flex: 0 0 39rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   box-shadow: 0 2px 5px rgba(42, 38, 54, 0.29);
   justify-content: space-between;
   color: #26154f; }
+  .schedule-item__img-box {
+    position: relative;
+    display: flex; }
+  .schedule-item__details-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
   .schedule-item__link {
     position: relative; }
   .schedule-item__img {
     width: 100%;
     display: block; }
+  .schedule-item__episode-name {
+    font-size: 1.5rem; }
+  .schedule-item__airdate {
+    font-size: 1.5rem; }
   .schedule-item__name {
     font-size: 1.6rem;
     text-align: center; }
@@ -377,7 +402,7 @@ body {
   min-height: 90vh;
   align-items: flex-start; }
   .content__heading {
-    padding: 2rem;
+    margin-bottom: 1rem;
     flex: 0 0 100%; }
 
 .results {
