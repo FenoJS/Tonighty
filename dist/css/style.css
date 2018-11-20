@@ -269,19 +269,12 @@ body {
     display: flex;
     flex: 0 0 100%;
     max-width: 112rem;
-    list-style: none;
-    animation: topSliderMove 20s infinite; }
+    list-style: none; }
   .upcoming-bar__item {
     flex: 0 0 29rem;
     font-size: 1.5rem; }
   .upcoming-bar__info, .upcoming-bar__date {
     text-align: center; }
-
-@keyframes topSliderMove {
-  0% {
-    transform: translateX(0px); }
-  100% {
-    transform: translateX(-1200px); } }
 
 .episode {
   display: flex;

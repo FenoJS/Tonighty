@@ -326,29 +326,75 @@ const controlUpcomingBar = () => {
     return aa - bb;
   });
 
-  // UPCOMING BAR SLIDER
-  elements.mainContent.addEventListener('click', (e) => {
-    const btnPrev = e.target.closest('.btn__slider-bar--prev');
-    const btnNext = e.target.closest('.btn__slider-bar--next');
-    const upcomingBar = document.querySelector('.upcoming-bar__list');
-
-    if (upcomingBar) {
-      const moveBy = document.querySelector('.upcoming-bar__item').offsetWidth;
-      const upcomingCount = upcomingBar.childNodes.length;
-
-      if (btnPrev) {
-        //state.show.seasonsBarPostion += moveBy;
-        upcomingBar.style.transform = `translateX(${moveBy}px)`;
-      }
-      if (btnNext) {
-        //state.show.seasonsBarPostion -= moveBy;
-        upcomingBar.style.transform = `translateX(${moveBy}px)`;
-      }
-    }
-  });
-
-
   upcomingBarView.renderUpcoming(sortedByAirdate);
+
+  // Upcoming bar infinite slider
+  const UpcomingSlider = () => {
+    const itemWidth = document.querySelector('.upcoming-bar__item').offsetWidth;
+    const slider = document.querySelector('.upcoming-bar__list');
+    const lastFourElements = Array.from(slider.childNodes).slice(-4)
+    const sliderWidth = slider.offsetWidth;
+    const itemsCount = slider.childNodes.length + 1;
+    console.log(itemsCount)
+    const direction = 1;
+    let currentPosition = 1;
+
+    slider.addEventListener('mouseover', () => {
+      clearInterval(window.startSlider)
+    })
+
+
+
+
+    const moveSlider = (direction, itemWidth) => {
+      const shouldResetCycle = !!(currentPosition === 0 || currentPosition === itemsCount);
+
+      if (shouldResetCycle) {
+        slider.style.transition = '';
+        clearInterval(window.startSlider)
+        currentPosition = (currentPosition === 0) ? itemsCount : 1;
+
+        slider.style.transform = `translateX(${0}px)`;
+        window.startSlider = setInterval(() => {
+          moveSlider(direction, itemWidth);
+        }, 30);
+      }
+
+      if (!shouldResetCycle) {
+        clearInterval(window.startSlider)
+        window.startSlider = setInterval(() => {
+          moveSlider(direction, itemWidth);
+        }, 3000);
+
+        slider.style.transform = `translateX(${(currentPosition * -itemWidth)}px)`;
+        slider.style.transition = '3s cubic-bezier(0.22, 0.21, 1, 1)';
+        currentPosition += direction;
+      }
+    };
+
+    if (itemsCount > 3) {
+      const firstElement = slider.childNodes[0].cloneNode(true);
+      const firstElement1 = slider.childNodes[1].cloneNode(true);
+      const firstElement2 = slider.childNodes[2].cloneNode(true);
+      const firstElement3 = slider.childNodes[3].cloneNode(true);
+      slider.appendChild(firstElement);
+      slider.appendChild(firstElement1)
+      slider.appendChild(firstElement2)
+      slider.appendChild(firstElement3)
+
+      window.startSlider = setInterval(() => {
+        moveSlider(direction, itemWidth);
+      }, 100);
+    }
+    slider.addEventListener('mouseout', () => {
+      window.startSlider = setInterval(() => {
+        moveSlider(direction, itemWidth);
+      }, 10);
+    });
+  };
+
+
+  UpcomingSlider();
 };
 
 
@@ -359,6 +405,7 @@ const controlUpcomingBar = () => {
   const { hash } = window.location;
   const showRe = /^#\/show\/\w*/;
   window.scrollTo(0, 0);
+  clearInterval(window.startSlider)
 
 
   if (hash !== '') {

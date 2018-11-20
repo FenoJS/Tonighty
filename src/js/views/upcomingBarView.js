@@ -28,9 +28,7 @@ export const clearUpcoming = () => {
 
 export const renderUpcoming = (shows) => {
   const markup = `<h3 class="upcoming-bar__header" >upcoming shows: </h3>
-                  <button class="btn btn__slider btn__slider-bar--prev"></button>
-                    <ul class="${elementString.upcomingBarList} "></ul>
-                  <button class="btn btn__slider btn__slider-bar--next"></button>`;
+                    <ul class="${elementString.upcomingBarList} "></ul>`;
   elements.upcomingBar.insertAdjacentHTML('beforeend', markup);
   shows.forEach(renderShow);
 };

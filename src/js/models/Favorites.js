@@ -16,7 +16,6 @@ export default class Favorites {
   }
 
   static async getAirdate(show) {
-    console.log(show)
     try {
       if (show._links && show._links.nextepisode) {
         const airdate = await axios(show._links.nextepisode.href);

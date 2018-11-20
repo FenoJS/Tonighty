@@ -18,7 +18,6 @@
     flex: 0 0 100%;
     max-width: 112rem;
     list-style: none;
-    animation: topSliderMove 20s infinite;
 
   }
 
@@ -32,9 +31,3 @@
   }
 
 }
-
-@keyframes topSliderMove {
-  0%   {transform: translateX(0px)}
-  100% {transform: translateX(-1200px)}
-}
-
