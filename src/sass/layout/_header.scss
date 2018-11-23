@@ -5,6 +5,14 @@
 
 .header__box {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
+  position: relative;
+  width: 100%;
+
+  @include for-size(tablet-port-up) {
+    align-items: center;
+    flex-direction: row;
+    width: auto;
+  }
 }

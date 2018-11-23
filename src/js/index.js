@@ -397,6 +397,18 @@ const controlUpcomingBar = () => {
   UpcomingSlider();
 };
 
+// Close hamburger menu after anchor click
+const handleMenuClick = (e) => {
+  const closeIcon = document.querySelector('.nav__checkbox');
+  if (e.target instanceof HTMLAnchorElement) {
+    closeIcon.checked = false;
+  }
+};
+
+elements.headerBox.addEventListener('click', handleMenuClick);
+
+
+
 
 // ROUTER
 

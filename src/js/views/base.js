@@ -32,7 +32,6 @@ export const clearLoader = () => {
 };
 
 export const renderMainTemplate = () => {
-  console.log(document.querySelector('.upcomin-bar'));
   if (!elements.upcomingBar) {
     const markupForm = `
         <form class="search-bar search-bar--top" action="#">

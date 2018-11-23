@@ -15,6 +15,10 @@
     <div class="wrapper">
       <div class="header__box">
         <a href="/"><h1 class="header__logo">tonighty</h1></a>
+        <input type="checkbox" class="nav__checkbox" id="nav-toggle">
+        <label for="nav-toggle" class="nav__button">
+          <span class="nav__icon"></span>
+        </label>
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item"><a href="#populars" class="nav__link" data-url="populars">Most Popular</a></li>
@@ -27,8 +31,7 @@
   </header>
   <main class="content">
     <div class="hp-box">
-      <h2 class="hp-box__heading heading-secondary--1">don't miss any <span>TV shows</span> ever again!</h2>
-      <h3 class="hp-box__heading heading-tertiary--1">Keep track of your favorites TV shows progress right here!</h3>
+      <h2 class="hp-box__heading heading-secondary--1">don't miss any <span>TV shows</span><br>ever again!</h2>
       <form class="search-bar" action="#">
         <input type="text" class="search-bar__input" placeholder="Search series">
         <button class="btn search-bar__btn">
@@ -37,6 +40,7 @@
           </svg>
       </button>
     </form>
+    <h3 class="hp-box__heading heading-tertiary--1">Keep track of your favorites TV shows progress right here!</h3>
     </div>
   </main>
 </body>

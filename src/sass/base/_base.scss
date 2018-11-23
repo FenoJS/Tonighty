@@ -5,7 +5,11 @@ body {
 
 .wrapper {
   margin:  0 auto;
-  width: 120rem;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+
+  @include for-size(tablet-port-up) {
+    width: 120rem;
+  }
 }

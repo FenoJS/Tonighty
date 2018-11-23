@@ -1,9 +1,14 @@
 .header__logo {
   font-family: 'Fugaz One', cursive;
-  font-size: 6rem;
+  font-size: 5rem;
   color: $color-primary-light-1;
   text-transform: uppercase;
   padding-top: 1rem;
+  margin-left: 1rem;
+
+  @include for-size(tablet-port-up) {
+    font-size: 6rem;
+  }
 }
 
 .heading-secondary {
@@ -13,9 +18,15 @@
 
   &--1 {
     color: #fff;
-    font-size: 5rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
     margin-top: -9rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    @include for-size(tablet-port-up) {
+      font-size: 5rem;
+    }
   }
 
   &--1 > span {
@@ -30,7 +41,12 @@
 
   &--1 {
     color: #fff;
-    font-size: 3rem;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+
+    @include for-size(tablet-port-up) {
+      font-size: 3rem;
+    }
   }
 }
