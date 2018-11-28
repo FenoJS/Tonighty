@@ -1,15 +1,25 @@
 .cast {
   display: flex;
-  width: 24.5%;
+  flex-direction: column;
+  flex: 0 0 32%;
   background-color: #fff;
-  padding: 1rem;
+  padding: 0.5rem;
   justify-content: space-between;
   align-items: center;
   margin-bottom: .5rem;
   box-shadow: $shadow-light;
 
+  @include for-size(tablet-port-up) {
+    flex-direction: row;
+    flex: 0 0 24.5%;
+  }
+
   &__img {
-    width: 125px;
+    width: 100%;
+
+    @include for-size(tablet-port-up) {
+      width: 125px;
+    }
   }
 
   &__info {

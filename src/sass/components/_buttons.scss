@@ -8,9 +8,13 @@
     padding: 1rem;
 
     &--small {
-      width: 23rem;
+      width: 19rem;
       background-color: $color-primary-light-2;
       margin-top: 5px;
+
+      @include for-size(tablet-port-up) {
+        width: 23rem;
+      }
     }
 
     &--small2 {

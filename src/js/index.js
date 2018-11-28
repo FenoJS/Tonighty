@@ -387,9 +387,11 @@ const controlUpcomingBar = () => {
       }, 100);
     }
     slider.addEventListener('mouseout', () => {
-      window.startSlider = setInterval(() => {
-        moveSlider(direction, itemWidth);
-      }, 10);
+      if (itemsCount > 3) {
+        window.startSlider = setInterval(() => {
+          moveSlider(direction, itemWidth);
+        }, 10);
+      }
     });
   };
 
