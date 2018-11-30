@@ -38,6 +38,24 @@
     &--watched2 {
       background-color: $color-primary-light-1;
     }
+
+    &--watch-all {
+      background-color: $color-primary-light-2;
+      width: 50%;
+
+      @include for-size(tablet-port-up) {
+        width: auto;
+      }
+    }
+
+    &--unwatch-all {
+      background-color: $color-primary-light-1;
+      width: 50%;
+
+      @include for-size(tablet-port-up) {
+        width: auto;
+      }
+    }
   }
 
 

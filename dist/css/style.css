@@ -101,6 +101,18 @@ body {
       background-color: #6441a4; }
     .btn__fav--watched2 {
       background-color: #ff5759; }
+    .btn__fav--watch-all {
+      background-color: #6441a4;
+      width: 50%; }
+      @media (min-width: 600px) {
+        .btn__fav--watch-all {
+          width: auto; } }
+    .btn__fav--unwatch-all {
+      background-color: #ff5759;
+      width: 50%; }
+      @media (min-width: 600px) {
+        .btn__fav--unwatch-all {
+          width: auto; } }
   .btn__info {
     background-color: transparent;
     margin-bottom: 1rem; }
@@ -180,13 +192,21 @@ body {
   display: flex; }
   .show__details-box {
     display: flex;
+    flex-direction: column;
     background-color: #fff;
     padding: 0.5rem;
     box-shadow: 0 2px 5px rgba(42, 38, 54, 0.29); }
+    @media (min-width: 600px) {
+      .show__details-box {
+        flex-direction: row; } }
   .show__img-box {
-    display: flex;
-    flex: 0 0 26rem;
-    height: 37rem; }
+    display: block;
+    height: auto; }
+    @media (min-width: 600px) {
+      .show__img-box {
+        display: flex;
+        flex: 0 0 26rem;
+        height: 37rem; } }
   .show__img {
     display: block;
     width: 100%;
@@ -223,16 +243,28 @@ body {
     flex: 0 0 100%;
     align-items: center;
     background-color: #fff;
-    max-width: 112rem;
+    max-width: 32rem;
     transform: translateX(0rem); }
+    @media (min-width: 360px) {
+      .show__season-list {
+        max-width: 35rem; } }
+    @media (min-width: 414px) {
+      .show__season-list {
+        max-width: 43rem; } }
+    @media (min-width: 600px) {
+      .show__season-list {
+        max-width: 112rem; } }
   .show__season-item {
     display: flex;
     width: 14rem;
     background-color: #fff;
-    padding: 1.5rem 5rem;
+    padding: 1.5rem 3rem;
     justify-content: center;
     font-size: 1.4rem;
     position: relative; }
+    @media (min-width: 600px) {
+      .show__season-item {
+        padding: 1.5rem 5rem; } }
     .show__season-item:hover::before {
       content: '';
       position: absolute;

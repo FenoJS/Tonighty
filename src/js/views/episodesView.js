@@ -21,7 +21,12 @@ const renderEpisode = (episode, season, storage) => {
 
     const markup = `<div class="episode">
       <div class="episode__img-box">
+      <picture>
+        <source media="(max-width: 600px)"
+          sizes="1px"
+          srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
         <img src="${episode.image ? episode.image.medium : ''}" alt="" class="episode__img"/>
+      </picture>
       </div>
       <div class="episode__details">
         <span class="episode__info">S${formatEpisodeNum(episode.season)}E${formatEpisodeNum(episode.number)} - ${episode.name}</span>
