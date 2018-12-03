@@ -1,11 +1,10 @@
 .results-item {
   display: flex;
   flex-direction: column;
-  flex: 0 0 100%;
+  flex: 1 0 45%;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
-  max-width: 19rem;
   box-shadow: $shadow-light2;
   justify-content: space-between;
   color: $color-primary-dark-1;
@@ -59,5 +58,13 @@
     width: 12rem;
     height: 12rem;
     fill: #fff
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    margin-top: 13rem;
+    text-align: center;
   }
 }

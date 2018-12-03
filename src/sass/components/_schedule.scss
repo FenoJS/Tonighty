@@ -1,12 +1,17 @@
 .schedule-item {
   display: flex;
-  flex: 0 0 39rem;
+  flex: 0 0 95%;
+  max-width: 55rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   box-shadow: $shadow-light;
   justify-content: space-between;
   color: $color-primary-dark-1;
+
+  @include for-size(tablet-port-up) {
+    flex: 0 0 39rem;
+  }
 
   &__img-box {
     position: relative;
@@ -15,6 +20,7 @@
 
   &__details-box {
     display: flex;
+    flex: 0 0 53%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -44,8 +50,9 @@
 
 
   &__name {
-    font-size: 1.6rem;
+    font-size: 2rem;
     text-align: center;
+    padding-top: 5rem;
   }
 
   &__network {

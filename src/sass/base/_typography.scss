@@ -32,6 +32,12 @@
   &--1 > span {
     color: $color-primary-light-1;
   }
+
+  &--2 {
+    font-size: 3.5rem;
+    color: #26154f;
+    margin-bottom: 2rem;
+  }
 }
 
 .heading-tertiary {
@@ -48,5 +54,10 @@
     @include for-size(tablet-port-up) {
       font-size: 3rem;
     }
+  }
+
+  &--2 {
+    font-size: 2rem;
+    color: #26154f;
   }
 }

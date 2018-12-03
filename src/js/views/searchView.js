@@ -54,3 +54,15 @@ export const renderResult = (shows, header, max = 100) => {
     }
   });
 };
+
+export const renderEmptyInfo = () => {
+  const markup = `
+    <div class="results-item__empty">
+      <h2 class="heading-secondary--2">You Don't have any favorites TV Shows yet!</h2>
+      <h3 class="heading-tertiary--2">Search for new TV Shows and add them into your Favorites</h3>
+      <a href="#populars">populars</a>
+    </div>
+  `;
+
+  elements.results.insertAdjacentHTML('afterbegin', markup)
+}

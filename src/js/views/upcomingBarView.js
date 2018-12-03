@@ -27,8 +27,14 @@ export const clearUpcoming = () => {
 };
 
 export const renderUpcoming = (shows) => {
-  const markup = `<h3 class="upcoming-bar__header" >upcoming shows: </h3>
+
+  if (!shows.length > 0) {
+    const markupEmpty = '<span class="upcoming-bar__empty">Add TV shows to favorites to see countdown</span>';
+    elements.upcomingBar.insertAdjacentHTML('beforeend', markupEmpty);
+  } else {
+    const markup = `<h3 class="upcoming-bar__header" >upcoming shows: </h3>
                     <ul class="${elementString.upcomingBarList} "></ul>`;
-  elements.upcomingBar.insertAdjacentHTML('beforeend', markup);
-  shows.forEach(renderShow);
+    elements.upcomingBar.insertAdjacentHTML('beforeend', markup);
+    shows.forEach(renderShow);
+  }
 };

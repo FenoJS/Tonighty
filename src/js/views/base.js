@@ -46,7 +46,7 @@ export const renderMainTemplate = () => {
     const markupMain = `
         <div class="wrapper">
           <div class="upcoming-bar"></div>
-          <h2 class="content__heading heading-tertiary">HEADER PLACEHOLDER</h2>
+          <h2 class="content__heading heading-tertiary"></h2>
           <div class="results">
             <div class="results__pagination"></div>
           </div>
@@ -73,3 +73,4 @@ export const renderMainTemplate = () => {
     return;
   }
 };
+

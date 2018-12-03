@@ -8,13 +8,9 @@
     padding: 1rem;
 
     &--small {
-      width: 19rem;
       background-color: $color-primary-light-2;
       margin-top: 5px;
-
-      @include for-size(tablet-port-up) {
-        width: 23rem;
-      }
+      width: 100%;
     }
 
     &--small2 {
@@ -42,19 +38,11 @@
     &--watch-all {
       background-color: $color-primary-light-2;
       width: 50%;
-
-      @include for-size(tablet-port-up) {
-        width: auto;
-      }
     }
 
     &--unwatch-all {
       background-color: $color-primary-light-1;
       width: 50%;
-
-      @include for-size(tablet-port-up) {
-        width: auto;
-      }
     }
   }
 
@@ -66,10 +54,14 @@
   }
 
   &__tab {
-    padding: 2rem;
+    padding: 1.5rem;
     background: $color-primary-light-3;
     color: $color-primary-dark-1;
     height: 100%;
+
+    @include for-size(tablet-port-up) {
+      padding: 2rem;
+    }
 
     &--active {
       background: $color-primary-light-2;

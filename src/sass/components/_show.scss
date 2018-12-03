@@ -34,7 +34,7 @@
   &__details {
     display: flex;
     flex-direction: column;
-    margin: 0 2rem;
+    margin: 0 1rem;
     justify-content: space-between;
     align-items: center;
   }
@@ -49,10 +49,14 @@
 
   &__description {
     font-size: 2rem;
+    margin-top: 1rem;
   }
 
   &__info {
+    display: flex;
     font-size: 1.7rem;
+    margin-top: 2rem;
+    text-align: center;
   }
 
   &__rating {

@@ -61,6 +61,10 @@ body {
         font-size: 5rem; } }
   .heading-secondary--1 > span {
     color: #ff5759; }
+  .heading-secondary--2 {
+    font-size: 3.5rem;
+    color: #26154f;
+    margin-bottom: 2rem; }
 
 .heading-tertiary {
   color: #6441a4;
@@ -74,6 +78,9 @@ body {
     @media (min-width: 600px) {
       .heading-tertiary--1 {
         font-size: 3rem; } }
+  .heading-tertiary--2 {
+    font-size: 2rem;
+    color: #26154f; }
 
 .btn {
   border: none;
@@ -83,12 +90,9 @@ body {
     color: #fff;
     padding: 1rem; }
     .btn__fav--small {
-      width: 19rem;
       background-color: #6441a4;
-      margin-top: 5px; }
-      @media (min-width: 600px) {
-        .btn__fav--small {
-          width: 23rem; } }
+      margin-top: 5px;
+      width: 100%; }
     .btn__fav--small2 {
       background-color: #ff5759; }
     .btn__fav--big {
@@ -104,23 +108,20 @@ body {
     .btn__fav--watch-all {
       background-color: #6441a4;
       width: 50%; }
-      @media (min-width: 600px) {
-        .btn__fav--watch-all {
-          width: auto; } }
     .btn__fav--unwatch-all {
       background-color: #ff5759;
       width: 50%; }
-      @media (min-width: 600px) {
-        .btn__fav--unwatch-all {
-          width: auto; } }
   .btn__info {
     background-color: transparent;
     margin-bottom: 1rem; }
   .btn__tab {
-    padding: 2rem;
+    padding: 1.5rem;
     background: #fec15e;
     color: #26154f;
     height: 100%; }
+    @media (min-width: 600px) {
+      .btn__tab {
+        padding: 2rem; } }
     .btn__tab--active {
       background: #6441a4;
       color: #fff; }
@@ -214,13 +215,17 @@ body {
   .show__details {
     display: flex;
     flex-direction: column;
-    margin: 0 2rem;
+    margin: 0 1rem;
     justify-content: space-between;
     align-items: center; }
   .show__description {
-    font-size: 2rem; }
+    font-size: 2rem;
+    margin-top: 1rem; }
   .show__info {
-    font-size: 1.7rem; }
+    display: flex;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+    text-align: center; }
   .show__tabs {
     display: flex;
     flex: 0 0 100%;
@@ -286,11 +291,10 @@ body {
 .results-item {
   display: flex;
   flex-direction: column;
-  flex: 0 0 100%;
+  flex: 1 0 45%;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
-  max-width: 19rem;
   box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.51);
   justify-content: space-between;
   color: #26154f; }
@@ -326,6 +330,12 @@ body {
     width: 12rem;
     height: 12rem;
     fill: #fff; }
+  .results-item__empty {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    margin-top: 13rem;
+    text-align: center; }
 
 .upcoming-bar {
   display: flex;
@@ -339,6 +349,11 @@ body {
     text-transform: uppercase;
     text-align: center;
     padding: 0.5rem 0; }
+  .upcoming-bar__empty {
+    width: 100%;
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center; }
   .upcoming-bar__list {
     display: flex;
     flex: 0 0 100%;
@@ -399,18 +414,23 @@ body {
 
 .schedule-item {
   display: flex;
-  flex: 0 0 39rem;
+  flex: 0 0 95%;
+  max-width: 55rem;
   margin: 1rem 0.5rem 0 0.5rem;
   background-color: #fff;
   position: relative;
   box-shadow: 0 2px 5px rgba(42, 38, 54, 0.29);
   justify-content: space-between;
   color: #26154f; }
+  @media (min-width: 600px) {
+    .schedule-item {
+      flex: 0 0 39rem; } }
   .schedule-item__img-box {
     position: relative;
     display: flex; }
   .schedule-item__details-box {
     display: flex;
+    flex: 0 0 53%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
@@ -424,8 +444,9 @@ body {
   .schedule-item__airdate {
     font-size: 1.5rem; }
   .schedule-item__name {
-    font-size: 1.6rem;
-    text-align: center; }
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 5rem; }
   .schedule-item__network {
     font-size: 2rem;
     text-align: center; }
@@ -464,21 +485,28 @@ body {
       width: auto; } }
 
 .nav {
-  display: none;
-  position: absolute;
-  top: 8rem;
-  width: 100%;
-  background-color: rgba(38, 21, 79, 0.6);
-  z-index: 500; }
+  display: flex;
+  font-size: 0.5rem;
+  opacity: 0;
+  height: 100vh;
+  position: fixed;
+  align-items: center;
+  width: 0;
+  background-color: #6441a4;
+  z-index: -1;
+  transition: all 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
   @media (min-width: 600px) {
     .nav {
-      display: flex;
-      position: initial;
+      width: 100%;
+      font-size: 1.4rem;
+      height: auto;
+      position: unset;
       top: unset;
-      background-color: unset; } }
+      opacity: 1;
+      background-color: unset;
+      z-index: 1; } }
   .nav__list {
     list-style: none;
-    font-size: 1.4rem;
     width: 100%; }
     @media (min-width: 600px) {
       .nav__list {
@@ -495,10 +523,15 @@ body {
   .nav__checkbox {
     display: none; }
   .nav__checkbox:checked ~ .nav {
-    display: flex; }
+    opacity: 1;
+    width: 100%;
+    z-index: 1200;
+    font-size: 3rem; }
     @media (min-width: 600px) {
       .nav__checkbox:checked ~ .nav {
         display: none; } }
+  .nav__checkbox:checked ~ .nav__button {
+    position: fixed; }
   .nav__button {
     height: 7rem;
     width: 7rem;
@@ -560,7 +593,7 @@ body {
   justify-content: center; }
 
 .hp-box {
-  background: url(/img/comfortable-female-food-1040158.jpg);
+  background: url(/img/landing.jpg);
   background-size: cover;
   display: flex;
   flex-direction: column;

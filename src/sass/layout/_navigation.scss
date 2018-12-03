@@ -1,23 +1,32 @@
 .nav {
-  display: none;
-  position: absolute;
-  top: 8rem;
-  width: 100%;
-  background-color: rgba($color-primary-dark-1, 0.6);
-  z-index: 500;
+  display: flex;
+  font-size: 0.5rem;
+  opacity: 0;
+  height: 100vh;
+  position: fixed;
+  align-items: center;
+  width: 0;
+  background-color: $color-primary-light-2;
+  z-index: -1;
+  transition: all 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+
+
 
   @include for-size(tablet-port-up){
-    display: flex;
-    position: initial;
+    width: 100%;
+    font-size: 1.4rem;
+    height: auto;
+    position: unset;
     top: unset;
+    opacity: 1;
     background-color: unset;
+    z-index: 1;
   }
 
 
 
   &__list {
   list-style: none;
-  font-size: 1.4rem;
   width: 100%;
 
   @include for-size(tablet-port-up){
@@ -48,12 +57,19 @@
 
 
   &__checkbox:checked ~ & {
-    display: flex;
+    opacity: 1;
+    width: 100%;
+    z-index: 1200;
+    font-size: 3rem;
 
     @include for-size(tablet-port-up){
       display: none;
     }
 }
+
+  &__checkbox:checked ~ &__button {
+    position: fixed;
+  }
 
 
   &__button {

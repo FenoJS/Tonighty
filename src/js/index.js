@@ -10,7 +10,7 @@ import * as upcomingBarView from './views/upcomingBarView';
 import * as episodesView from './views/episodesView';
 
 
-import { elements, renderMainTemplate } from './views/base';
+import { elements, renderMainTemplate, landingPage } from './views/base';
 import { getDateYYYYMMDD, toggleFavBtn } from './helpers';
 // GLOBAL STATE
 
@@ -213,11 +213,15 @@ const controlFavorites = (id, type, action) => {
   }
 
   if (window.location.hash === '#favorites') {
-    searchView.clearResults();
-    searchView.renderResult(state.favorites.favoriteShows, 'Your favorites shows:');
+
+    if (!state.favorites.favoriteShows.length > 0) {
+      searchView.clearResults();
+      searchView.renderEmptyInfo();
+    } else {
+      searchView.clearResults();
+      searchView.renderResult(state.favorites.favoriteShows, 'Your favorites shows:');
+    }
   }
-
-
 };
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
@@ -395,8 +399,9 @@ const controlUpcomingBar = () => {
     });
   };
 
-
-  UpcomingSlider();
+  if (state.favorites.favoriteShows.length > 0) {
+    UpcomingSlider();
+  }
 };
 
 // Close hamburger menu after anchor click
