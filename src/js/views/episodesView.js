@@ -25,7 +25,7 @@ const renderEpisode = (episode, season, storage) => {
         <source media="(max-width: 600px)"
           sizes="1px"
           srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
-        <img src="${episode.image ? episode.image.medium : ''}" alt="" class="episode__img"/>
+        <img src="${episode.image ? episode.image.medium.replace('http', 'https') : ''}" alt="" class="episode__img"/>
       </picture>
       </div>
       <div class="episode__details">

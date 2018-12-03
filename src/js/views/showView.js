@@ -38,8 +38,8 @@ export const renderShow = (show, header) => {
       <div class="show__img-box">
       <picture>
       <source media="(max-width: 600px)"
-        srcset="${show.image.medium}"/>
-        <img src="${show.image.original}" alt="#" class="show__img">
+        srcset="${show.image.medium.replace('http', 'https')}"/>
+        <img src="${show.image.original.replace('http', 'https')}" alt="#" class="show__img">
     </picture>
       </div>
       <div class="show__details">

@@ -26,7 +26,7 @@ const renderShow = (show, storage) => {
   const markup = `
     <div class="results-item">
       <a href="#/show/${show.id}" class="results-item__link">
-        <img src="${show.image ? show.image.medium : ''}" alt="${show.name}" class="results-item__img">
+        <img src="${show.image ? show.image.medium.replace('http', 'https') : ''}" alt="${show.name}" class="results-item__img">
         <div class="results-item__back">
         <button class="btn btn__info">
           <svg class="results-item__icon">

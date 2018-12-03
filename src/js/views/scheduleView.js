@@ -25,7 +25,7 @@ const renderShow = (show, storage) => {
     <div class="schedule-item">
       <div class="schedule-item__img-box">
         <a href="#/show/${show.id}" class="schedule-item__link">
-        <img src="${show.image ? show.image.medium : ''}" alt="${show.name}" class="schedule-item__img">
+        <img src="${show.image ? show.image.medium.replace('http', 'https') : ''}" alt="${show.name}" class="schedule-item__img">
         <div class="schedule-item__back">
         <button class="btn btn__info">
           <svg class="schedule-item__icon">
