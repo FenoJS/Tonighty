@@ -593,7 +593,7 @@ body {
   justify-content: center; }
 
 .hp-box {
-  background: url(/img/landing.jpg);
+  background: url(../img/landing.jpg);
   background-size: cover;
   display: flex;
   flex-direction: column;
