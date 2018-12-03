@@ -10,7 +10,7 @@ export default class Show {
       const res = await axios(`https://api.tvmaze.com/shows/${this.id}?embed[]=episodes&embed[]=cast`);
 
       if (res.data._links.nextepisode) {
-        const airdateInfo = await axios(res.data._links.nextepisode.href);
+        const airdateInfo = await axios(res.data._links.nextepisode.href.replace('http', 'https'));
         this.airdateInfo = airdateInfo.data;
       }
       console.log(res)
