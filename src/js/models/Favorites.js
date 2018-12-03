@@ -47,7 +47,7 @@ export default class Favorites {
   async refreshShowsAirdate() {
     this.favoriteShows.map(async(i) => {
       if (i.airdateInfo && (new Date(i.airdateInfo.airstamp).getTime() < new Date().getTime())) {
-        const showData = await axios(`http://api.tvmaze.com/shows/${i.id}`);
+        const showData = await axios(`https://api.tvmaze.com/shows/${i.id}`);
         const index = this.favoriteShows.indexOf(i);
         const updatedShowAirdate = await Favorites.getAirdate(showData.data);
         this.favoriteShows[index].airdateInfo = updatedShowAirdate.airdateInfo;

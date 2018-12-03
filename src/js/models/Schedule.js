@@ -7,7 +7,7 @@ export default class Schedule {
 
   async getSchedule(date) {
     try {
-      const res = await axios(`http://api.tvmaze.com/schedule?country=US&date=${date}`);
+      const res = await axios(`https://api.tvmaze.com/schedule?country=US&date=${date}`);
       console.log(res.data);
 
       res.data.map((item) => {

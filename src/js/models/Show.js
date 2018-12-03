@@ -7,7 +7,7 @@ export default class Show {
 
   async getShow() {
     try {
-      const res = await axios(`http://api.tvmaze.com/shows/${this.id}?embed[]=episodes&embed[]=cast`);
+      const res = await axios(`https://api.tvmaze.com/shows/${this.id}?embed[]=episodes&embed[]=cast`);
 
       if (res.data._links.nextepisode) {
         const airdateInfo = await axios(res.data._links.nextepisode.href);
