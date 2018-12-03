@@ -64,5 +64,6 @@ export const renderEmptyInfo = () => {
     </div>
   `;
 
+  elements.contentHeading.textContent = '';
   elements.results.insertAdjacentHTML('afterbegin', markup)
 }
