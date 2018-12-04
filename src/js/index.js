@@ -325,10 +325,12 @@ const controlUpcomingBar = () => {
   upcomingBarView.clearUpcoming();
 
   const sortedByAirdate = state.favorites.favoriteShows.slice(0).sort((a, b) => {
-    const aa = a.airdateInfo ? new Date(a.airdateInfo.airdate).getTime() : 0;
-    const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 0;
+    const aa = a.airdateInfo ? new Date(a.airdateInfo.airdate).getTime() : 1963927791299; // 1963927791299
+    const bb = b.airdateInfo ? new Date(b.airdateInfo.airdate).getTime() : 1963927791299;
     return aa - bb;
   });
+
+  console.log(sortedByAirdate)
 
   upcomingBarView.renderUpcoming(sortedByAirdate);
 
@@ -399,7 +401,7 @@ const controlUpcomingBar = () => {
     });
   };
 
-  if (state.favorites.favoriteShows.length > 0) {
+  if (state.favorites.favoriteShows.length > 3) {
     UpcomingSlider();
   }
 };
