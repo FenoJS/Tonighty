@@ -44,7 +44,7 @@ export const renderShow = (show, header) => {
       </div>
       <div class="show__details">
         <div class="show__details-top">
-          <span class="show__rating">Rating: ${show.rating}/10</span>
+          <span class="show__rating">Rating: ${show.rating ? show.rating + '/10' : 'no info'}</span>
           <button class="btn btn__fav ${renderLikedBtn(parseInt(id, 10), storage) ? 'btn__fav--big btn__fav--big2' : 'btn__fav--big'}">${buttonText}</button>
         </div>
         <div class="show__details-mid">
