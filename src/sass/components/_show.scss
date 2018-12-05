@@ -40,7 +40,12 @@
   }
 
   &__details-top {
-
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: -2rem;
+    margin-bottom: 4px;
+    align-items: center;
   }
 
   &__details-mid {
@@ -97,6 +102,11 @@
     background-color: #fff;
     justify-content: space-between;
     box-shadow: 0px 4px 5px 0px rgba(144, 144, 144, 0.29);
+
+    @include for-size(tablet-port-up) {
+      position: relative;
+      height: 4.7rem;
+    }
   }
 
 
@@ -118,6 +128,7 @@
 
     @include for-size(tablet-port-up) {
       max-width: 112rem;
+      position: absolute;
     }
   }
 

@@ -6,7 +6,7 @@
   padding-top: 1rem;
   margin-left: 1rem;
 
-  @include for-size(tablet-port-up) {
+  @include for-size(desktop-up) {
     font-size: 6rem;
   }
 }

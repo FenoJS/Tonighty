@@ -12,7 +12,7 @@
 
 
 
-  @include for-size(tablet-port-up){
+  @include for-size(tablet-land-up){
     width: 100%;
     font-size: 1.4rem;
     height: auto;
@@ -27,9 +27,14 @@
 
   &__list {
   list-style: none;
+  margin-right: 0;
   width: 100%;
 
   @include for-size(tablet-port-up){
+    display: flex;
+  }
+
+  @include for-size(desktop-up){
     display: flex;
     margin-right: 4rem;
   }
@@ -47,7 +52,11 @@
     color: #fff;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 1.5rem 3.5rem;
+    padding: 1.5rem 1.5rem;
+
+    @include for-size(desktop-up) {
+      padding: 1.5rem 3.5rem;
+    }
 
     }
 
@@ -62,7 +71,7 @@
     z-index: 1200;
     font-size: 3rem;
 
-    @include for-size(tablet-port-up){
+    @include for-size(tablet-land-up){
       display: none;
     }
 }
@@ -80,9 +89,13 @@
     cursor: pointer;
     right: 4px;
     top: 29px;
-    position: absolute;
+    position: fixed;
 
-    @include for-size(tablet-port-up) {
+    @include for-size(tablet-port-up){
+      top: 34px;
+    }
+
+    @include for-size(tablet-land-up) {
       display: none;
     }
   }

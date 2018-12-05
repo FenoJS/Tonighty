@@ -8,11 +8,10 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 100%;
+  width: auto;
 
-  @include for-size(tablet-port-up) {
+  @include for-size(tablet-land-up) {
     align-items: center;
     flex-direction: row;
-    width: auto;
   }
 }

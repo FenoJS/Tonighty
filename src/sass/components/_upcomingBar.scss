@@ -3,6 +3,7 @@
   flex: 0 0 100%;
   flex-wrap: wrap;
   overflow: hidden;
+  margin-bottom: 0.5rem;
   color: $color-primary-dark-1;
 
   &__header {
@@ -23,7 +24,7 @@
   &__list {
     display: flex;
     flex: 0 0 100%;
-    max-width: 112rem;
+    max-width: 30rem;
     list-style: none;
 
   }
