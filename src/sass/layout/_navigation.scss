@@ -89,7 +89,7 @@
     cursor: pointer;
     right: 4px;
     top: 29px;
-    position: fixed;
+    position: absolute;
 
     @include for-size(tablet-port-up){
       top: 34px;

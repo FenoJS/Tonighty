@@ -23,6 +23,7 @@ export default class Show {
       this.genres = res.data.genres.toString().replace(/,/g, ', ');
       this.episodes = res.data._embedded.episodes;
       this.cast = res.data._embedded.cast;
+      this.status = res.data.status;
 
 
     } catch (err) {

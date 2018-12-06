@@ -223,6 +223,7 @@ const controlFavorites = (id, type, action) => {
     }
   }
 };
+
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
   console.log(e.target)
@@ -231,17 +232,29 @@ elements.mainContent.addEventListener('click', (e) => {
     const id = btn.dataset.showId;
     toggleFavBtn(e, 'btn__fav--small2');
     controlFavorites(id, 'show');
+    setTimeout(() => {
+      controlUpcomingBar()
+    }, 100)
+
+    console.log('2')
+
   }
 });
 
-elements.mainContent.addEventListener('click', (e) => {
+elements.mainContent.addEventListener('click', async(e) => {
   const btn = document.querySelector('.btn__fav--big');
 
   if (btn && (e.target === btn)) {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
     toggleFavBtn(e, 'btn__fav--big2');
-    controlFavorites(id, 'show');
+    try {
+      await controlFavorites(id, 'show');
+    } catch (err) {
+      console.log(err)
+    }
+    controlUpcomingBar();
+
   }
 });
 
@@ -322,6 +335,11 @@ const controlSchedule = async() => {
   // UPCOMING BAR CONTROLLER
 
 const controlUpcomingBar = () => {
+  //debugger;
+  console.log('3')
+  console.log('asdad', state.favorites.favoriteShows)
+  const copiedArray = state.favorites.favoriteShows.slice(0)
+  console.log('asdad', copiedArray)
   upcomingBarView.clearUpcoming();
 
   const sortedByAirdate = state.favorites.favoriteShows.slice(0).sort((a, b) => {
@@ -331,7 +349,7 @@ const controlUpcomingBar = () => {
   });
 
   console.log(sortedByAirdate)
-
+  console.log('asdad')
   upcomingBarView.renderUpcoming(sortedByAirdate);
 
   // Upcoming bar infinite slider

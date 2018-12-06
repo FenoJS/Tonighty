@@ -7,7 +7,8 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "watch:sass": "node-sass src/sass/main.scss dist/css/style.css -w"
+    "watch:sass": "node-sass src/sass/main.scss dist/css/style.css -w",
+    "minify:sass": "node-sass --output-style compressed src/sass/main.scss dist/css/style.css"
   },
   "author": "Lukas",
   "license": "ISC",

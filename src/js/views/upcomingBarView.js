@@ -7,7 +7,7 @@ import { formatEpisodeNum } from '../helpers';
 dayjs.extend(relativeTime);
 
 const renderShow = (show) => {
-  console.log('redner upcomong item', show.status)
+  console.log('redner upcomong item', show)
   const el = document.querySelector(`.${elementString.upcomingBarList}`);
   if (show.airdateInfo) {
     const markup = `<li class="upcoming-bar__item">
@@ -22,7 +22,6 @@ const renderShow = (show) => {
     el.insertAdjacentHTML('beforeend', markup);
   }
   if (show.status !== 'Running') {
-      console.log(show.status)
     const markup = `<li class="upcoming-bar__item">
       <div class="upcoming-bar__info">
         ${show.name}
@@ -31,6 +30,19 @@ const renderShow = (show) => {
         ${show.status}
       </div>
     </li>`;
+
+    el.insertAdjacentHTML('beforeend', markup);
+  }
+
+  if ((show.status === 'Running') && !show.airdateInfo) {
+    const markup = `<li class="upcoming-bar__item">
+    <div class="upcoming-bar__info">
+      ${show.name}
+    </div>
+    <div class="upcoming-bar__date">
+      Waiting for info
+    </div>
+  </li>`;
 
     el.insertAdjacentHTML('beforeend', markup);
   }

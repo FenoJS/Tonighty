@@ -31,6 +31,7 @@ export default class Favorites {
   async addFavorite(item, type) {
     if (type === 'show') {
       this.favoriteShows.push(await Favorites.getAirdate(item));
+      console.log('1')
     }
     if (type === 'episode') {
       if (Array.isArray(item)) {
