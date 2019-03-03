@@ -1,3 +1,4 @@
+/* eslint-disable semi */
 import Search from './models/Search';
 import Show from './models/Show';
 import Popular from './models/Popular';
@@ -9,7 +10,6 @@ import * as scheduleView from './views/scheduleView';
 import * as upcomingBarView from './views/upcomingBarView';
 import * as episodesView from './views/episodesView';
 
-
 import { elements, renderMainTemplate, landingPage } from './views/base';
 import { getDateYYYYMMDD, toggleFavBtn } from './helpers';
 // GLOBAL STATE
@@ -17,7 +17,6 @@ import { getDateYYYYMMDD, toggleFavBtn } from './helpers';
 const state = {};
 
 // SEARCH CONTROLLER
-
 
 const controlSearch = async() => {
   // Get query from view
@@ -45,7 +44,6 @@ const controlSearch = async() => {
     }
   }
 };
-
 
 // SHOW CONTROLLER
 
@@ -96,7 +94,6 @@ elements.mainContent.addEventListener('click', (e) => {
   }
 });
 
-// SHOULD CHANGE TO DATA ATRIBUTE
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.show__season-item');
 
@@ -121,7 +118,11 @@ elements.mainContent.addEventListener('click', (e) => {
       state.show.seasonsBarPostion += moveBy;
       seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
     }
-    if (btnNext && (((moveBy * seasonsCount) > seasonsBar.offsetWidth) && state.show.seasonsBarPostion > -Math.abs((moveBy * seasonsCount) - seasonsBar.offsetWidth))) {
+    if (
+      btnNext
+      && (moveBy * seasonsCount > seasonsBar.offsetWidth
+        && state.show.seasonsBarPostion > -Math.abs(moveBy * seasonsCount - seasonsBar.offsetWidth))
+    ) {
       state.show.seasonsBarPostion -= moveBy;
       seasonsBar.style.transform = `translateX(${state.show.seasonsBarPostion}px)`;
     }
@@ -172,20 +173,20 @@ const controlFavorites = (id, type, action) => {
   if (id && type === 'show') {
     // Check if show is already liked and depend of result add it or remove from Favorites
     if (!state.favorites.isLiked(parsedId, type)) {
-      if ((state.search && window.location.hash === '#search')) {
+      if (state.search && window.location.hash === '#search') {
         const showIndex = state.search.result.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.search.result[showIndex], type);
       }
-      if ((state.populars && window.location.hash === '#populars')) {
+      if (state.populars && window.location.hash === '#populars') {
         const showIndex = state.populars.populars.findIndex(e => e.id === parsedId);
         state.favorites.addFavorite(state.populars.populars[showIndex], type);
       }
-      if ((state.schedule && window.location.hash === '#schedule')) {
+      if (state.schedule && window.location.hash === '#schedule') {
         const showIndex = state.schedule.schedule.findIndex(e => e.id === parsedId);
-        console.log(showIndex)
+        console.log(showIndex);
         state.favorites.addFavorite(state.schedule.schedule[showIndex], type);
       }
-      if ((state.show && window.location.hash === `#/show/${id}`)) {
+      if (state.show && window.location.hash === `#/show/${id}`) {
         state.favorites.addFavorite(state.show, type);
       }
     } else {
@@ -204,16 +205,14 @@ const controlFavorites = (id, type, action) => {
 
     if (Array.isArray(id)) {
       const filteredIDs = id.filter(i => !state.favorites.isLiked(i, type));
-      state.favorites.addFavorite(filteredIDs, type)
+      state.favorites.addFavorite(filteredIDs, type);
     }
     if (action === 'remove') {
       state.favorites.deleteFavorite(id, type);
     }
-
   }
 
   if (window.location.hash === '#favorites') {
-
     if (!state.favorites.favoriteShows.length > 0) {
       searchView.clearResults();
       searchView.renderEmptyInfo();
@@ -226,35 +225,33 @@ const controlFavorites = (id, type, action) => {
 
 elements.mainContent.addEventListener('click', (e) => {
   const btn = e.target.closest('.btn__fav--small', 'btn__fav--small *');
-  console.log(e.target)
+  console.log(e.target);
   if (btn) {
     e.preventDefault();
     const id = btn.dataset.showId;
     toggleFavBtn(e, 'btn__fav--small2');
     controlFavorites(id, 'show');
     setTimeout(() => {
-      controlUpcomingBar()
-    }, 100)
+      controlUpcomingBar();
+    }, 100);
 
-    console.log('2')
-
+    console.log('2');
   }
 });
 
 elements.mainContent.addEventListener('click', async(e) => {
   const btn = document.querySelector('.btn__fav--big');
 
-  if (btn && (e.target === btn)) {
+  if (btn && e.target === btn) {
     e.preventDefault();
     const id = window.location.hash.replace('#/show/', '');
     toggleFavBtn(e, 'btn__fav--big2');
     try {
       await controlFavorites(id, 'show');
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
     controlUpcomingBar();
-
   }
 });
 
@@ -269,13 +266,11 @@ elements.mainContent.addEventListener('click', (e) => {
   }
 });
 
-
 elements.mainContent.addEventListener('click', (e) => {
   const btnWatch = e.target.closest('.btn__fav--watch-all', '.btn__fav--watch-all *');
   const btnUnwatch = e.target.closest('.btn__fav--unwatch-all', '.btn__fav--unwatch-all *');
   const allElements = document.querySelectorAll('[data-episode-id]');
   const allIDs = Array.from(allElements).map(i => parseInt(i.dataset.episodeId, 10));
-
 
   if (btnWatch) {
     e.preventDefault();
@@ -296,13 +291,11 @@ elements.mainContent.addEventListener('click', (e) => {
   }
 });
 
-
 window.addEventListener('load', () => {
   state.favorites = new Favorites();
   state.favorites.readStorage();
   state.favorites.refreshShowsAirdate();
 });
-
 
 // SCHEDULE CONTROLLER
 
@@ -332,14 +325,9 @@ const controlSchedule = async() => {
     console.log(err);
   }
 };
-  // UPCOMING BAR CONTROLLER
+// UPCOMING BAR CONTROLLER
 
 const controlUpcomingBar = () => {
-  //debugger;
-  console.log('3')
-  console.log('asdad', state.favorites.favoriteShows)
-  const copiedArray = state.favorites.favoriteShows.slice(0)
-  console.log('asdad', copiedArray)
   upcomingBarView.clearUpcoming();
 
   const sortedByAirdate = state.favorites.favoriteShows.slice(0).sort((a, b) => {
@@ -348,35 +336,34 @@ const controlUpcomingBar = () => {
     return aa - bb;
   });
 
-  console.log(sortedByAirdate)
-  console.log('asdad')
+  console.log(sortedByAirdate);
   upcomingBarView.renderUpcoming(sortedByAirdate);
 
   // Upcoming bar infinite slider
   const UpcomingSlider = () => {
     const itemWidth = document.querySelector('.upcoming-bar__item').offsetWidth;
     const slider = document.querySelector('.upcoming-bar__list');
-    const lastFourElements = Array.from(slider.childNodes).slice(-4)
+    const lastFourElements = Array.from(slider.childNodes).slice(-4);
     const sliderWidth = slider.offsetWidth;
     const itemsCount = slider.childNodes.length + 1;
-    console.log(itemsCount)
+    console.log(itemsCount);
     const direction = 1;
     let currentPosition = 1;
+    clearInterval(window.startSlider);
 
     slider.addEventListener('mouseover', () => {
-      clearInterval(window.startSlider)
-    })
-
-
-
+      clearInterval(window.startSlider);
+    });
 
     const moveSlider = (direction, itemWidth) => {
+      // debugger;
       const shouldResetCycle = !!(currentPosition === 0 || currentPosition === itemsCount);
 
       if (shouldResetCycle) {
         slider.style.transition = '';
-        clearInterval(window.startSlider)
-        currentPosition = (currentPosition === 0) ? itemsCount : 1;
+        clearInterval(window.startSlider);
+        console.log('klir');
+        currentPosition = currentPosition === 0 ? itemsCount : 1;
 
         slider.style.transform = `translateX(${0}px)`;
         window.startSlider = setInterval(() => {
@@ -385,12 +372,12 @@ const controlUpcomingBar = () => {
       }
 
       if (!shouldResetCycle) {
-        clearInterval(window.startSlider)
+        clearInterval(window.startSlider);
         window.startSlider = setInterval(() => {
           moveSlider(direction, itemWidth);
         }, 3000);
 
-        slider.style.transform = `translateX(${(currentPosition * -itemWidth)}px)`;
+        slider.style.transform = `translateX(${currentPosition * -itemWidth}px)`;
         slider.style.transition = '3s cubic-bezier(0.22, 0.21, 1, 1)';
         currentPosition += direction;
       }
@@ -402,9 +389,9 @@ const controlUpcomingBar = () => {
       const firstElement2 = slider.childNodes[2].cloneNode(true);
       const firstElement3 = slider.childNodes[3].cloneNode(true);
       slider.appendChild(firstElement);
-      slider.appendChild(firstElement1)
-      slider.appendChild(firstElement2)
-      slider.appendChild(firstElement3)
+      slider.appendChild(firstElement1);
+      slider.appendChild(firstElement2);
+      slider.appendChild(firstElement3);
 
       window.startSlider = setInterval(() => {
         moveSlider(direction, itemWidth);
@@ -434,9 +421,6 @@ const handleMenuClick = (e) => {
 
 elements.headerBox.addEventListener('click', handleMenuClick);
 
-
-
-
 // ROUTER
 
 ['hashchange', 'load'].forEach(e => window.addEventListener(e, () => {
@@ -444,8 +428,8 @@ elements.headerBox.addEventListener('click', handleMenuClick);
   const { hash } = window.location;
   const showRe = /^#\/show\/\w*/;
   window.scrollTo(0, 0);
-  clearInterval(window.startSlider)
-
+  clearInterval(window.startSlider);
+  console.log(window.history);
 
   if (hash !== '') {
     renderMainTemplate();
@@ -457,16 +441,16 @@ elements.headerBox.addEventListener('click', handleMenuClick);
   });
 
   switch (true) {
-    case (hash === '#populars'):
+    case hash === '#populars':
       controlPopular();
       break;
-    case (hash === '#favorites'):
+    case hash === '#favorites':
       controlFavorites();
       break;
-    case (hash === '#schedule'):
+    case hash === '#schedule':
       controlSchedule();
       break;
-    case (showRe.test(hash)):
+    case showRe.test(hash):
       controlShow();
       break;
   }
